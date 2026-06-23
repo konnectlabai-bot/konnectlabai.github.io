@@ -1,0 +1,11 @@
+{
+  "buildCommand": "",
+  "outputDirectory": ".",
+  "framework": null,
+  "installCommand": "",
+  "functions": {
+    "api/*.js": {
+      "maxDuration": 10
+    }
+  }
+}
