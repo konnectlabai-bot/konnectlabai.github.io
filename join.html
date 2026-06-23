@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Join KYNISKIS</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f172a; color: #e2e8f0; min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+    .c { width: 100%; max-width: 480px; padding: 40px 24px; }
+    .logo { text-align: center; margin-bottom: 28px; }
+    .logo img { width: 56px; height: 56px; border-radius: 14px; }
+    .logo h1 { font-size: 22px; margin-top: 10px; color: #f1f5f9; }
+    .logo p { font-size: 13px; color: #64748b; margin-top: 4px; }
+    .card { background: #1e293b; border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; padding: 28px; }
+    .sec { font-size: 12px; color: #3b82f6; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; margin: 20px 0 10px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.06); }
+    .sec:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+    label { display: block; font-size: 13px; color: #94a3b8; margin-bottom: 5px; margin-top: 14px; }
+    input, select { width: 100%; padding: 11px 14px; background: #0f172a; border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; color: #e2e8f0; font-size: 14px; outline: none; font-family: inherit; }
+    select { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12'%3E%3Cpath fill='%2364748b' d='M6 8L1 3h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; }
+    input:focus, select:focus { border-color: #3b82f6; }
+    .row { display: flex; gap: 12px; } .row>div { flex: 1; }
+    .rg { display: flex; gap: 12px; margin-top: 6px; }
+    .rg label { flex: 1; text-align: center; padding: 10px 8px; background: #0f172a; border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; cursor: pointer; font-size: 13px; margin-top: 0; color: #94a3b8; transition: all 0.15s; }
+    .rg input { display: none; }
+    .rg label:has(input:checked) { border-color: #3b82f6; background: rgba(59,130,246,0.1); color: #3b82f6; }
+    .pw-bar { height:3px; background:#1e293b; border-radius:2px; margin-top:6px; overflow:hidden; }
+    .pw-fill { height:100%; width:0%; border-radius:2px; transition:width 0.3s,background 0.3s; }
+    .privacy-box { margin-top: 20px; padding: 14px; background: rgba(59,130,246,0.05); border: 1px solid rgba(59,130,246,0.1); border-radius: 10px; font-size: 12px; color: #94a3b8; line-height: 1.6; }
+    .privacy-box strong { color: #e2e8f0; }
+    .chk { display: flex; align-items: flex-start; gap: 10px; margin-top: 14px; }
+    .chk input[type=checkbox] { width: 18px; height: 18px; margin-top: 1px; flex-shrink: 0; accent-color: #3b82f6; cursor: pointer; }
+    .chk label { font-size: 12px; color: #94a3b8; margin-top: 0; cursor: pointer; line-height: 1.6; }
+    button { width: 100%; margin-top: 20px; padding: 13px; background: #3b82f6; border: none; border-radius: 10px; color: #fff; font-size: 15px; font-weight: 600; cursor: pointer; }
+    button:hover { background: #2563eb; }
+    button:disabled { opacity: 0.5; cursor: not-allowed; }
+    button.outline { background: transparent; border: 1px solid #3b82f6; color: #3b82f6; }
+    button.outline:hover { background: rgba(59,130,246,0.1); }
+
+    /* Notification overlay */
+    .notify-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 100; align-items: center; justify-content: center; }
+    .notify-overlay.show { display: flex; }
+    .notify-box { background: #1e293b; border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 36px 28px 28px; text-align: center; max-width: 380px; width: 90%; }
+    .notify-icon { font-size: 48px; margin-bottom: 12px; }
+    .notify-title { font-size: 18px; font-weight: 700; margin-bottom: 8px; color: #f1f5f9; }
+    .notify-desc { font-size: 14px; color: #94a3b8; margin-bottom: 24px; line-height: 1.6; }
+    .notify-box button { margin-top: 0; width: 100%; }
+    .msg { font-size: 13px; margin-top: 12px; text-align: center; }
+    .msg.error { color: #ef4444; }
+    .msg.success { color: #22c55e; }
+    .back { text-align: center; margin-top: 20px; }
+    .back a { color: #64748b; font-size: 13px; text-decoration: none; }
+    .back a:hover { color: #94a3b8; }
+    @media (max-width: 480px) { .c { padding: 24px 16px; } .card { padding: 20px; } .rg { gap: 8px; } .rg label { padding: 10px 4px; font-size: 12px; } }
+  </style>
+</head>
+<body>
+<div class="c">
+  <div class="logo">
+    <img src="https://konnectlabai.com/Logo.png" alt="Kynis">
+    <h1>Join KYNISKIS</h1>
+    <p>Your AI coach needs to know you</p>
+  </div>
+  <div class="card">
+    <form onsubmit="return handleSubmit(event)">
+      <div class="sec">Account</div>
+      <label>Display Name *</label><input type="text" id="name" placeholder="How should Kynis call you?" required>
+      <label>Email *</label><input type="email" id="email" placeholder="you@example.com" required>
+      <label>Password *</label><input type="password" id="password" placeholder="Min 8 characters" required minlength="8" oninput="checkPw()">
+      <div class="pw-bar"><div class="pw-fill" id="pwStr"></div></div>
+      <div style="font-size:11px;color:#64748b;margin-top:4px;" id="pwHint">Use 8+ characters with letters, numbers &amp; symbols</div>
+
+      <div class="sec">About You</div>
+      <label>Gender *</label>
+      <div class="rg">
+        <label><input type="radio" name="gender" value="male" required><span>♂ Male</span></label>
+        <label><input type="radio" name="gender" value="female"><span>♀ Female</span></label>
+        <label><input type="radio" name="gender" value="prefer_not_to_say"><span>Prefer not to say</span></label>
+      </div>
+      <div class="row">
+        <div><label>Height (cm) *</label>
+          <select id="height" required><option value="">Select</option><option value="under150">Under 150</option><option value="150-160">150–160</option><option value="160-170">160–170</option><option value="170-180">170–180</option><option value="180-190">180–190</option><option value="190-200">190–200</option><option value="over200">Over 200</option></select></div>
+        <div><label>Weight (kg) *</label>
+          <select id="weight" required><option value="">Select</option><option value="under40">Under 40</option><option value="40-50">40–50</option><option value="50-60">50–60</option><option value="60-70">60–70</option><option value="70-80">70–80</option><option value="80-90">80–90</option><option value="90-100">90–100</option><option value="100-110">100–110</option><option value="over110">Over 110</option></select></div>
+      </div>
+
+      <div class="sec">Training</div>
+      <label>Prior training experience? *</label>
+      <div class="rg">
+        <label><input type="radio" name="train" value="yes_structured" required><span>Yes, structured</span></label>
+        <label><input type="radio" name="train" value="yes_casual"><span>Yes, casual</span></label>
+        <label><input type="radio" name="train" value="no"><span>New to training</span></label>
+      </div>
+      <label style="margin-top:14px;">Training types (optional)</label><input type="text" id="trainTypes" placeholder="e.g. CrossFit, running, gym...">
+
+      <div class="privacy-box"><strong>🔒 Privacy Notice</strong><br><br>Your personal data is collected with your explicit consent for personalising your Kynis AI Coach experience. Stored securely. Never shared. Compliant with Hong Kong PDPO (Cap. 486).</div>
+      <div class="chk"><input type="checkbox" id="consent" required><label for="consent">I consent to the collection and processing of my personal data as described above.</label></div>
+
+      <button type="submit" id="btn">Create My Account</button>
+    </form>
+  </div>
+  <div class="back"><a href="index.html">← Back to KonnectLAB</a> · <a href="login.html">Sign in instead</a></div>
+
+  <!-- Notification overlay -->
+  <div class="notify-overlay" id="notifyOverlay">
+    <div class="notify-box">
+      <div class="notify-icon" id="notifyIcon"></div>
+      <div class="notify-title" id="notifyTitle"></div>
+      <div class="notify-desc" id="notifyDesc"></div>
+      <button id="notifyBtn" onclick="closeNotify()">OK</button>
+    </div>
+  </div>
+</div>
+
+<script>
+var SUPABASE_URL = 'https://glrafplaeyxckbxogbgg.supabase.co';
+var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdscmFmcGxhZXl4Y2tieG9nYmdnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAzMDMyMzEsImV4cCI6MjA5NTg3OTIzMX0.qJifgfF_k4ozsLS53xPqjzjBR8I-nL5qFOHidCE37sU';
+
+function checkPw(){
+  var pw=document.getElementById('password').value,s=0;
+  if(pw.length>=8)s++;if(pw.length>=12)s++;
+  if(/[a-z]/.test(pw)&&/[A-Z]/.test(pw))s++;if(/[0-9]/.test(pw))s++;if(/[^a-zA-Z0-9]/.test(pw))s++;
+  var b=document.getElementById('pwStr'),h=document.getElementById('pwHint'),p=s*20;
+  b.style.width=p+'%';
+  if(s<=1){b.style.background='#ef4444';h.textContent='Too weak — add more variety';}
+  else if(s<=2){b.style.background='#f59e0b';h.textContent='Getting there — add numbers or symbols';}
+  else if(s<=3){b.style.background='#3b82f6';h.textContent='Decent — make it longer';}
+  else{b.style.background='#22c55e';h.textContent='Strong password ✓';}
+}
+
+function showNotify(icon, title, desc, btnText, btnAction){
+  document.getElementById('notifyIcon').textContent=icon;
+  document.getElementById('notifyTitle').textContent=title;
+  document.getElementById('notifyDesc').textContent=desc;
+  var b=document.getElementById('notifyBtn');
+  b.textContent=btnText||'OK';
+  b.onclick=btnAction||closeNotify;
+  document.getElementById('notifyOverlay').classList.add('show');
+}
+function closeNotify(){
+  document.getElementById('notifyOverlay').classList.remove('show');
+}
+
+async function handleSubmit(e){
+  e.preventDefault();
+  var btn=document.getElementById('btn');
+  btn.disabled=true;btn.textContent='Creating your account…';
+
+  try{
+    var r=await fetch(SUPABASE_URL+'/auth/v1/signup',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','apikey':SUPABASE_ANON_KEY},
+      body:JSON.stringify({
+        email:document.getElementById('email').value.trim(),
+        password:document.getElementById('password').value,
+        data:{
+          display_name:document.getElementById('name').value.trim(),
+          gender:(document.querySelector('input[name=gender]:checked')||{}).value||null,
+          height:document.getElementById('height').value,
+          weight:document.getElementById('weight').value,
+          training_history:(document.querySelector('input[name=train]:checked')||{}).value||null,
+          training_types:document.getElementById('trainTypes').value.trim()
+        }
+      })
+    });
+
+    if(!r.ok){var d=await r.json();throw new Error(d.msg||d.error||'Request failed');}
+    var user=await r.json();
+
+    if(user.identities&&user.identities.length===0){
+      btn.disabled=false;btn.textContent='Create My Account';
+      showNotify('🔔','Already registered','This email is already registered. Go to sign in instead.','Sign In →',function(){location.href='login.html';});
+      return false;
+    }
+
+    // Trigger verification email
+    var email = document.getElementById('email').value.trim();
+    btn.textContent='Sending verification…';
+    try {
+      var vr = await fetch('/api/join', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email })
+      });
+      var vd = await vr.json();
+      if (vr.ok && vd.token) {
+        localStorage.setItem('kynis_verify_email', email);
+        localStorage.setItem('kynis_verify_token', vd.token);
+        location.href = 'verify.html?email=' + encodeURIComponent(email);
+      } else {
+        localStorage.setItem('kynis_verify_email', email);
+        location.href = 'verify.html?email=' + encodeURIComponent(email) + '&status=pending';
+      }
+    } catch (e) {
+      localStorage.setItem('kynis_verify_email', email);
+      location.href = 'verify.html?email=' + encodeURIComponent(email) + '&status=pending';
+    }
+  }catch(err){
+    btn.disabled=false;btn.textContent='Create My Account';
+    showNotify('⚠️','Something went wrong',err.message,'Try Again',closeNotify);
+  }
+  return false;
+}
+
+if(localStorage.getItem('kynis_token'))location.href='index.html';
+</script>
+</body>
+</html>

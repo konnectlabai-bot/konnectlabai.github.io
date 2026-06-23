@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Konnect International — Business Card</title>
+<style>
+  @page { size: 54mm 90mm; margin: 0; }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #d0d0d0;
+    display: flex; flex-direction: column; align-items: center; gap: 24px;
+    padding: 40px 20px;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI',
+      'Helvetica Neue', 'PingFang HK', 'Noto Sans HK', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .card {
+    width: 54mm; height: 90mm;
+    border-radius: 3.5mm;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.22), 0 2px 8px rgba(0,0,0,0.1);
+    flex-shrink: 0;
+    display: flex; flex-direction: column;
+  }
+
+  /* ===== TOP BAR — Metallic Silver ===== */
+  .top-bar {
+    background: linear-gradient(180deg, #e8e9ee 0%, #d4d5db 40%, #c8c9cf 100%);
+    padding: 3.5mm 4.5mm 2.8mm 4.5mm;
+    display: flex; align-items: center; gap: 2.5mm;
+    position: relative;
+  }
+  .top-bar::after {
+    content: '';
+    position: absolute; bottom: 0; left: 4.5mm; right: 4.5mm;
+    height: 0.5px;
+    background: rgba(0,0,0,0.08);
+  }
+  .logo-img {
+    width: 8mm; height: 8mm;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .top-info {
+    display: flex; flex-direction: column;
+  }
+  .top-company {
+    font-size: 6.5pt; font-weight: 700; letter-spacing: 1.2pt;
+    color: #1a1a1a; text-transform: uppercase; line-height: 1.2;
+  }
+  .top-company-zh {
+    font-size: 5pt; font-weight: 500; letter-spacing: 0.8pt;
+    color: #555; margin-top: 0.2mm;
+  }
+
+  /* ===== BODY — Dark ===== */
+  .body {
+    flex: 1;
+    background: #0a0a0a;
+    padding: 5mm 4.5mm;
+    display: flex; flex-direction: column;
+    position: relative;
+  }
+
+  /* Subtle left accent line */
+  .body::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0;
+    width: 1.2mm;
+    background: linear-gradient(180deg,
+      rgba(59,130,246,0.6) 0%,
+      rgba(59,130,246,0.15) 40%,
+      rgba(59,130,246,0.05) 100%);
+  }
+
+  /* ===== Name Section ===== */
+  .name-section {
+    margin-top: 2mm;
+    padding-left: 0.5mm;
+  }
+  .name-en {
+    font-size: 14pt; font-weight: 700; letter-spacing: -0.3pt;
+    color: #fff; line-height: 1.1;
+  }
+  .name-en .jeff {
+    font-weight: 400; color: #6b7280; font-size: 10pt;
+  }
+  .name-zh {
+    font-size: 12pt; font-weight: 600; letter-spacing: 2pt;
+    color: #e5e7eb; margin-top: 1.5mm;
+  }
+  .title-line {
+    display: flex; flex-direction: column; gap: 0.5mm; margin-top: 2mm;
+  }
+  .title-en {
+    font-size: 5.5pt; color: #3b82f6;
+    text-transform: uppercase; letter-spacing: 0.8pt;
+  }
+  .title-zh {
+    font-size: 5.5pt; color: #6b7280;
+    letter-spacing: 0.5pt;
+  }
+
+  .divider {
+    width: 100%; height: 0.5px;
+    background: rgba(255,255,255,0.06);
+    margin: 3.5mm 0;
+  }
+
+  /* ===== Contact Section ===== */
+  .contact-section {
+    flex: 1;
+    display: flex; flex-direction: column;
+    gap: 1.8mm;
+  }
+  .contact-row {
+    display: flex; align-items: center; gap: 2mm;
+    font-size: 5.5pt;
+  }
+  .contact-row .icon {
+    color: #4b5563; font-size: 5pt;
+    width: 3mm; text-align: center; flex-shrink: 0;
+  }
+  .contact-row .val {
+    color: #e5e7eb; font-weight: 400;
+    text-decoration: none;
+  }
+
+  /* ===== Bottom Area: QR + URL ===== */
+  .bottom-area {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-top: auto;
+    padding-top: 2mm;
+  }
+  .qr-dual {
+    display: flex; gap: 1.8mm;
+  }
+  .qr-item { text-align: center; }
+  .qr-item img {
+    width: 8.5mm; height: 8.5mm; display: block;
+    border-radius: 0.5mm;
+    background: #fff; padding: 0.5mm;
+  }
+  .qr-item .qr-label {
+    font-size: 3.8pt; color: #4b5563;
+    margin-top: 0.3mm; letter-spacing: 0.2pt;
+  }
+  .bottom-url {
+    font-size: 5.5pt; color: #3b82f6; font-weight: 600;
+    letter-spacing: 0.3pt;
+  }
+
+  /* ===== BACK — Full Dark ===== */
+  .back {
+    background: #0a0a0a; color: #fff;
+    padding: 5mm 4.5mm;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    text-align: center;
+  }
+  .back-brand {
+    font-size: 22pt; font-weight: 700; letter-spacing: 0.5pt;
+    color: #3b82f6;
+  }
+  .back-logo-wrap {
+    display: flex; flex-direction: column; align-items: center; gap: 3mm;
+  }
+  .back-logo-img {
+    width: 30mm; height: auto;
+  }
+  .back-tagline {
+    font-size: 6pt; color: #6b7280;
+    letter-spacing: 0.5pt; margin-top: 2mm;
+  }
+  .back-motto {
+    font-size: 9pt; color: #e5e7eb; font-weight: 500;
+    letter-spacing: 0.5pt; line-height: 1.5;
+    margin-top: 6mm;
+  }
+  .back-motto em { font-style: normal; color: #3b82f6; }
+  .back-url {
+    font-size: 5.5pt; color: #3b82f6; font-weight: 600;
+    letter-spacing: 0.3pt; margin-top: auto;
+  }
+
+  /* ===== Labels ===== */
+  .label {
+    font-size: 10px; color: #888; letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* ===== Print ===== */
+  .print-hint {
+    color: #888; font-size: 11px; text-align: center;
+    max-width: 320px; line-height: 1.6; margin-top: 16px;
+  }
+  @media print {
+    body { background: #fff; padding: 0; gap: 0; }
+    .card { box-shadow: none; page-break-after: always; border-radius: 0; }
+    .label, .print-hint { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== FRONT ===== -->
+<div class="card">
+  <div class="top-bar">
+    <img class="logo-img" src="apple-touch-icon.png" alt="KYNISKIS">
+    <div class="top-info">
+      <div class="top-company">Konnect International</div>
+      <div class="top-company-zh">喬聯國際有限公司</div>
+    </div>
+  </div>
+
+  <div class="body">
+    <div class="name-section">
+      <div class="name-en">Qiao Qian <span class="jeff">(Jeff)</span></div>
+      <div class="name-zh">喬迁</div>
+      <div class="title-line">
+        <span class="title-en">Founder &amp; Director</span>
+        <span class="title-zh">創始人兼董事</span>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="contact-section">
+      <div class="contact-row">
+        <span class="icon">✉</span>
+        <span class="val">jeff.qiao@konnectlabai.com</span>
+      </div>
+      <div class="contact-row">
+        <span class="icon">📞</span>
+        <span class="val">(852) 9375 6855</span>
+      </div>
+      <div class="contact-row">
+        <span class="icon"></span>
+        <span class="val">(86) 135 3076 5600</span>
+      </div>
+      <div class="contact-row">
+        <span class="icon">📍</span>
+        <span class="val" style="line-height:1.5;">
+          RM 1901, 19/F Hip Shing Hong Centre<br>
+          55 Des Voeux Road Central, Central<br>
+          香港中環德輔道中55號<br>
+          協成行中心19樓1901室
+        </span>
+      </div>
+    </div>
+
+    <div class="bottom-area">
+      <div class="qr-dual">
+        <div class="qr-item">
+          <img src="qr-website.png" alt="Web">
+          <div class="qr-label">網站</div>
+        </div>
+        <div class="qr-item">
+          <img src="qr-vcard.png" alt="vCard">
+          <div class="qr-label">通訊錄</div>
+        </div>
+      </div>
+      <div class="bottom-url">konnectlabai.com</div>
+    </div>
+  </div>
+</div>
+
+<div class="label">正面</div>
+
+<!-- ===== BACK ===== -->
+<div class="card back">
+  <div class="back-logo-wrap">
+    <img src="kyniskis-logo.png" alt="KYNISKIS" class="back-logo-img">
+  </div>
+  <div class="back-tagline">AI-Empowered Health Solutions</div>
+
+  <div class="back-motto">
+    Train.<br>
+    Sleep.<br>
+    <em>Recovery.</em>
+  </div>
+
+  <div class="back-url">konnectlabai.com</div>
+</div>
+
+<div class="label">背面</div>
+
+<div class="print-hint">
+  📇 54×90mm 竖版 · Apple Card 风格<br>
+  金属银顶栏 + 深黑主体 + 蓝色左竖条<br>
+  打印 → 无边距 → 另存 PDF
+</div>
+
+</body>
+</html>

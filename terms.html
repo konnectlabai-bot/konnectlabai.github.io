@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms of Use — Konnect International</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+      background: #0a0a0a;
+      color: #e0e0e0;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: #3b82f6; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Navigation */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 0 24px;
+    }
+
+  nav { display: flex; align-items: center; justify-content: space-between; }
+  .nav-left { display: flex; align-items: center; gap: 14px; }
+  .nav-right { display: flex; align-items: center; gap: 12px; }
+  .logo-text { font-size: 15px; font-weight: 700; letter-spacing: 1px; color: #e5e5e5; text-decoration: none; }
+  .logo-text span { color: #3b82f6; }
+  .nav-dropdown { position: relative; display: inline-block; }
+  .nav-dropbtn {
+    background: none; border: none; color: #999;
+    font-size: 12px; font-family: inherit; cursor: pointer;
+    padding: 6px 10px; border-radius: 6px;
+    transition: color 0.2s, background 0.2s;
+  }
+  .nav-dropbtn:hover { color: #fff; background: rgba(255,255,255,0.08); }
+  .nav-dropdown-content {
+    display: none; position: absolute; right: 0; top: 100%;
+    min-width: 180px;
+    background: #1a1a1a; border-radius: 10px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+    border: 1px solid #333;
+    padding: 6px 0; z-index: 200;
+    animation: fadeDown 0.15s ease;
+  }
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .nav-dropdown-content.show { display: block; }
+  .nav-dropdown-content a {
+    display: block; padding: 8px 16px;
+    font-size: 13px; color: #ccc; text-decoration: none;
+    transition: background 0.15s;
+  }
+  .nav-dropdown-content a:hover { background: #2a2a2a; color: #fff; }
+  .nav-dropdown-content a.active { color: #3b82f6; font-weight: 600; }
+
+  .hamburger {
+    display: flex; flex-direction: column; gap: 4px;
+    background: none; border: none; cursor: pointer; padding: 8px;
+    border-radius: 8px; transition: background 0.2s;
+  }
+  .hamburger:hover { background: rgba(255,255,255,0.05); }
+  .hamburger span {
+    display: block; width: 17px; height: 1.5px;
+    background: #777; border-radius: 1px;
+    transition: background 0.2s, width 0.2s;
+  }
+  .hamburger:hover span { background: #fff; }
+  .hamburger:hover span:nth-child(2) { width: 13px; }
+  .hamburger-menu { display: none; }
+  /* Side menu overlay */
+  .side-menu-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 199; }
+  body:has(#sideMenuCheckbox:checked) .side-menu-overlay { display: block; }
+  .side-menu { position: fixed; top: 0; left: -320px; width: 300px; height: 100vh; background: #fff; box-shadow: 4px 0 40px rgba(0,0,0,0.15); z-index: 200; transition: left 0.3s cubic-bezier(0.4,0,0.2,1); display: flex; flex-direction: column; overflow-y: auto; }
+  body:has(#sideMenuCheckbox:checked) .side-menu { left: 0; }
+  .side-menu-header { padding: 20px 24px; border-bottom: 1px solid #f3f4f6; display: flex; align-items: center; justify-content: space-between; }
+  .side-menu-header .close-btn { background: none; border: none; font-size: 24px; color: #9ca3af; cursor: pointer; padding: 4px; line-height: 1; }
+  .side-menu-header .close-btn:hover { color: #0a0a0a; }
+  .side-menu-links { flex: 1; padding: 8px 0; }
+  .side-menu-links a { display: block; padding: 14px 24px; font-size: 16px; color: #374151; text-decoration: none; font-weight: 500; border-left: 3px solid transparent; transition: background 0.15s,color 0.15s; }
+  .side-menu-links a:hover { background: #f9fafb; color: #0a0a0a; border-left-color: #3b82f6; }
+  .side-menu-links hr { border: none; border-top: 1px solid #f3f4f6; margin: 8px 0; }
+  .side-menu-footer { padding: 20px 24px; border-top: 1px solid #f3f4f6; }
+  .side-menu-footer a { display: block; text-align: center; padding: 12px; background: #3b82f6; color: #fff; border-radius: 10px; text-decoration: none; font-size: 15px; font-weight: 600; }
+  .side-menu-footer a:hover { background: #2563eb; }
+  @media (max-width: 400px) { .side-menu { width: 280px; } }
+
+  .nav-dropdown-content hr { border: none; border-top: 1px solid #333; margin: 4px 0; }
+
+    /* Hero */
+    .hero {
+      padding: 140px 24px 80px;
+      text-align: center;
+      background: linear-gradient(180deg, rgba(59,130,246,0.06) 0%, transparent 60%);
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3rem); font-weight: 700;
+      letter-spacing: -0.02em; color: #fff; margin-bottom: 12px;
+    }
+    .hero .updated {
+      color: #666; font-size: 0.9rem;
+    }
+
+    /* Content */
+    .content {
+      max-width: 780px; margin: 0 auto; padding: 0 24px 100px;
+    }
+    .content h2 {
+      font-size: 1.5rem; font-weight: 600; color: #fff;
+      margin: 56px 0 16px; padding-top: 28px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .content h3 {
+      font-size: 1.1rem; font-weight: 600; color: #ccc;
+      margin: 28px 0 10px;
+    }
+    .content p, .content li {
+      color: #b0b0b0; font-size: 0.95rem; margin-bottom: 12px;
+    }
+    .content ul, .content ol {
+      padding-left: 24px; margin-bottom: 16px;
+    }
+    .content li { margin-bottom: 6px; }
+    .highlight-box {
+      background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.18);
+      border-radius: 8px; padding: 20px 24px; margin: 24px 0;
+    }
+    .highlight-box p { color: #c8d8f0; margin: 0; }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 48px 24px 32px; text-align: center;
+    }
+    .footer-inner { max-width: 1100px; margin: 0 auto; }
+    footer p { color: #555; font-size: 0.85rem; margin-bottom: 6px; }
+    footer a { color: #666; font-size: 0.85rem; margin: 0 12px; }
+    footer a:hover { color: #3b82f6; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-left">
+    <input type="checkbox" id="sideMenuCheckbox" style="display:none">
+    <label class="hamburger" for="sideMenuCheckbox" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </label>
+    <a href="index.html" class="logo-text">KONNECT <span>INTERNATIONAL</span></a>
+  </div>
+  <div class="nav-right">
+    <div class="nav-dropdown">
+      <button class="nav-dropbtn" onclick="toggleDropdown('langMenu')">EN ▾</button>
+      <div class="nav-dropdown-content lang-menu" id="langMenu">
+        <a href="#" onclick="setLang('en');return false" class="active">EN</a>
+        <a href="#" onclick="setLang('zh-CN');return false">简</a>
+        <a href="#" onclick="setLang('zh-TW');return false">繁</a>
+      </div>
+    </div>
+  </div>
+  <label class="side-menu-overlay" id="sideMenuOverlay" for="sideMenuCheckbox"></label>
+  <div class="side-menu" id="sideMenu">
+    <div class="side-menu-header">
+      <span style="font-size:15px;font-weight:700;letter-spacing:1px;color:#0a0a0a;">KONNECT <span style="color:#3b82f6;">INTERNATIONAL</span></span>
+      <label class="close-btn" for="sideMenuCheckbox">✕</label>
+    </div>
+    <div class="side-menu-links">
+      <a href="index.html#about">About Konnect International</a>
+      <a href="index.html#kyniskis">About KYNISKIS</a>
+      <a href="how-it-works.html">How KYNISKIS Works</a>
+      <a href="index.html#training">Training &amp; Consulting</a>
+      <a href="index.html#contact">Contact Us</a>
+      <hr>
+      <a href="terms.html">Terms of Use</a>
+      <a href="privacy.html">Privacy Policy</a>
+    </div>
+    <div class="side-menu-footer">
+      <a href="join.html">Join KYNISKIS</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <h1>Terms of Use</h1>
+  <p class="updated">Last Updated: June 2026</p>
+</section>
+
+<div class="content">
+
+  <h2>1. Introduction</h2>
+  <p>
+    Welcome to Konnect International Limited ("Konnect International," "we," "us," or "our"), a company registered in Hong Kong SAR.
+    These Terms of Use ("Terms") govern your access to and use of the Kyniskis Band device, the Kyniskis mobile application, 
+    our website at konnectlabai.com, and all related services (collectively, the "Services").
+  </p>
+  <p>
+    By creating an account, pairing a Kyniskis Band, or otherwise using the Services, you agree to be bound by these Terms. 
+    If you do not agree, do not use the Services.
+  </p>
+
+  <div class="highlight-box">
+    <p>
+      <strong>Important:</strong> The Kyniskis Band is a <strong>wellness and fitness device</strong>, not a medical device. 
+      It is not intended to diagnose, treat, cure, or prevent any disease. Always consult a qualified healthcare professional
+      before making health-related decisions based on data from the Services.
+    </p>
+  </div>
+
+  <h2>2. Eligibility</h2>
+  <p>
+    You must be at least 13 years of age to use the Services. If you are between 13 and the legal age to form a binding contract
+    in your jurisdiction, you may only use the Services with the consent and supervision of a parent or legal guardian, who 
+    will be responsible for your activity.
+  </p>
+  <p>
+    By using the Services, you represent and warrant that you meet these eligibility requirements. We reserve the right to
+    refuse service to anyone for any reason at our sole discretion.
+  </p>
+
+  <h2>3. Account Registration</h2>
+  <p>
+    To use the Services, you must create an account. You agree to provide accurate, current, and complete information during 
+    registration and to keep your account information updated. You are responsible for maintaining the confidentiality of your 
+    login credentials and for all activities that occur under your account.
+  </p>
+  <p>
+    You must notify us immediately at <a href="mailto:jeff.qiao@konnectlabai.com">jeff.qiao@konnectlabai.com</a> of any unauthorized 
+    use of your account. We are not liable for any loss arising from unauthorized use of your account.
+  </p>
+
+  <h2>4. Membership &amp; Payments</h2>
+  <h3>Subscription</h3>
+  <p>
+    Kyniskis Band is offered through a subscription membership. Membership options and current pricing are displayed at the time 
+    of purchase. By subscribing, you agree to pay all applicable fees and taxes.
+  </p>
+  <h3>Auto-Renewal</h3>
+  <p>
+    Unless you cancel before the end of your current membership period, your subscription will automatically renew for the same
+    duration at the then-current rate. We will notify you before renewal.
+  </p>
+  <h3>Cancellation</h3>
+  <p>
+    You may cancel your membership at any time through the Kyniskis App or by contacting us. Cancellation takes effect at the 
+    end of your current paid period. No refunds are provided for partial membership periods, except as required by applicable law.
+  </p>
+  <h3>Free Trials</h3>
+  <p>
+    We may offer free trial periods. At the end of the trial, your paid membership will begin unless you cancel before the trial 
+    ends. Trial eligibility and duration are specified at sign-up.
+  </p>
+
+  <h2>5. Device Use &amp; License</h2>
+  <p>
+    Subject to these Terms and your active membership, we grant you a limited, non-exclusive, non-transferable, revocable license to:
+  </p>
+  <ul>
+    <li>Use the Kyniskis Band device for your personal, non-commercial use</li>
+    <li>Download and install the Kyniskis App on devices you own or control</li>
+    <li>Access and use the Content and features provided through the Services</li>
+  </ul>
+  <p>
+    You may not: reverse engineer, decompile, or disassemble the device software or app; rent, lease, or resell the Services; 
+    use the Services for any illegal purpose; or interfere with the proper operation of the Services.
+  </p>
+  <p>
+    The device is for personal use only. Sharing a single device between multiple users may produce inaccurate data.
+  </p>
+
+  <h2>6. Intellectual Property</h2>
+  <p>
+    The Services, including the Kyniskis Band hardware design, software, mobile application, website, algorithms, branding, 
+    and all Content (collectively, "IP"), are owned by Konnect International Limited or its licensors and are protected by 
+    Hong Kong and international intellectual property laws.
+  </p>
+  <p>
+    "KYNISKIS," "Konnect International," "ThresZone," and all related logos are trademarks of Konnect International Limited. You may not 
+    use these marks without our prior written permission. All other trademarks appearing on the Services are the property of 
+    their respective owners.
+  </p>
+
+  <h2>6.1 ThresZone — Definition</h2>
+  <p>
+    <strong>ThresZone</strong> (a contraction of "Threshold Zone") is a proprietary training metric and algorithmic evaluation framework 
+    developed by Konnect International Limited for the Kyniskis platform.
+  </p>
+  <p>
+    The term combines two concepts:
+  </p>
+  <p>
+    <strong>Threshold</strong> — derived from "thresh" (to separate grain from chaff, to discern the boundary) and "hold" (to maintain 
+    position, to sustain). In training physiology, the threshold marks the boundary between productive adaptation and 
+    non-productive overload. It is the line where stimulus becomes growth — neither too little nor too much. To "hold" the 
+    threshold is the discipline of staying precisely at this edge.
+  </p>
+  <p>
+    <strong>Zone</strong> — the continuous operational range within which the body's neuroendocrine system responds optimally. When 
+    you train inside this zone, the hypothalamus and pituitary regulate cortisol rhythm, testosterone release, and growth 
+    hormone timing — producing a state of hormonal equilibrium that sustains efficient fat metabolism, complete recovery, 
+    and progressive strength adaptation over time.
+  </p>
+  <p>
+    The ThresZone metric integrates cardiovascular load, movement volume, and daily activity data, processed through a 
+    personalized baseline (derived from each user's 30-day training history) and a hyperbolic tangent (tanh) scaling model. 
+    The result is a 0-100 score that quantifies how much adaptive stimulus a user has applied on a given day — guiding them 
+    to remain inside the growth zone, at the edge of what their body can handle, without exceeding what it can recover from.
+  </p>
+  <p>
+    ThresZone is a trademark of Konnect International Limited. Unauthorized use of the term, the underlying algorithm, or 
+    any derivative implementations is prohibited.
+  </p>
+
+  <h2>7. User-Generated Data</h2>
+  <p>
+    <strong>You own your data.</strong> The health, wellness, and activity data generated by your use of the Kyniskis Band 
+    ("User Data") belongs to you. By using the Services, you grant us a worldwide, royalty-free license to use your User Data 
+    solely as necessary to:
+  </p>
+  <ul>
+    <li>Provide and improve the Services to you</li>
+    <li>Conduct research and development using de-identified, aggregated data</li>
+    <li>Comply with legal obligations</li>
+  </ul>
+  <p>
+    We will never sell your personal health data. For full details, see our <a href="/privacy.html">Privacy Policy</a>.
+  </p>
+
+  <h2>8. Health Disclaimer</h2>
+  <p>
+    <strong>The Kyniskis Band is a wellness device — not a medical device.</strong> It has not been cleared or approved by 
+    any medical regulatory authority. The data and insights provided are for informational and educational purposes only.
+  </p>
+  <p>
+    You should not:
+  </p>
+  <ul>
+    <li>Use the Services to diagnose or treat any medical condition</li>
+    <li>Disregard professional medical advice based on data from the Services</li>
+    <li>Use the Services during activities where device failure could cause injury</li>
+  </ul>
+  <p>
+    If you have a known medical condition, consult your doctor before using the Kyniskis Band. Stop use immediately if you 
+    experience skin irritation or discomfort.
+  </p>
+
+  <h2>9. Limitation of Liability</h2>
+  <p>
+    To the fullest extent permitted by Hong Kong law, Konnect International Limited shall not be liable for any indirect, 
+    incidental, special, consequential, or punitive damages arising from or related to your use of the Services, including 
+    but not limited to loss of data, personal injury, or health complications.
+  </p>
+  <p>
+    Our total liability for any claim arising from the Services is limited to the greater of HKD 1,000 or the membership fees 
+    you paid in the 12 months preceding the claim. Nothing in these Terms excludes liability that cannot be limited under 
+    applicable law.
+  </p>
+
+  <h2>10. Governing Law &amp; Dispute Resolution</h2>
+  <p>
+    These Terms are governed by and construed in accordance with the laws of the Hong Kong Special Administrative Region of 
+    the People's Republic of China, without regard to conflict of law principles.
+  </p>
+  <p>
+    Any dispute arising from or relating to these Terms or the Services shall first be attempted to be resolved through good-faith 
+    negotiation. If unresolved within 60 days, the dispute shall be submitted to the exclusive jurisdiction of the courts of 
+    Hong Kong SAR.
+  </p>
+
+  <h2>11. Changes to These Terms</h2>
+  <p>
+    We may update these Terms from time to time. If we make material changes, we will notify you via the email associated with 
+    your account and/or through the Kyniskis App at least 30 days before the changes take effect. Your continued use of the 
+    Services after the effective date constitutes acceptance of the updated Terms.
+  </p>
+
+  <h2>12. Contact Us</h2>
+  <p>
+    If you have questions about these Terms, please contact us:
+  </p>
+  <p>
+    <strong>Konnect International Limited</strong><br>
+    Room 1901, Hip Shing Hong Centre<br>
+    55 Des Voeux Road Central<br>
+    Hong Kong SAR<br>
+    Email: <a href="mailto:jeff.qiao@konnectlabai.com">jeff.qiao@konnectlabai.com</a>
+  </p>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <p>&copy; 2026 Konnect International Limited. All rights reserved.</p>
+    <p>
+      <a href="/">Home</a>
+      <a href="/how-it-works.html">How It Works</a>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/terms.html">Terms of Use</a>
+    </p>
+  </div>
+</footer>
+
+
+<script>
+var sideLinks = document.querySelectorAll('.side-menu-links a');
+for (var i = 0; i < sideLinks.length; i++) {
+  sideLinks[i].addEventListener('click', function() {
+    document.getElementById('sideMenuCheckbox').checked = false;
+  });
+}
+// Dropdown toggle
+function toggleDropdown(id) {
+  var d = document.getElementById(id);
+  d.classList.toggle('show');
+}
+window.onclick = function(e) {
+  if (!e.target.matches('.nav-dropbtn') && !e.target.matches('.hamburger') && !e.target.matches('.hamburger span')) {
+    document.querySelectorAll('.nav-dropdown-content').forEach(function(d) {
+      d.classList.remove('show');
+    });
+    document.querySelectorAll('.hamburger-menu').forEach(function(d) {
+      d.classList.remove('show');
+    });
+  }
+};
+function setLang(lang) {
+  document.querySelectorAll('#langMenu a').forEach(function(a) {
+    a.classList.remove('active');
+    if (a.textContent.trim() === (lang === 'en' ? 'EN' : lang === 'zh-CN' ? '简' : '繁')) {
+      a.classList.add('active');
+    }
+  });
+}
+</script>
+
+</body>
+</html>

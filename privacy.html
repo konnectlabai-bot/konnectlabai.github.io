@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Konnect International</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+      background: #0a0a0a;
+      color: #e0e0e0;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: #3b82f6; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Navigation */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 0 24px;
+    }
+
+  nav { display: flex; align-items: center; justify-content: space-between; }
+  .nav-left { display: flex; align-items: center; gap: 14px; }
+  .nav-right { display: flex; align-items: center; gap: 12px; }
+  .logo-text { font-size: 15px; font-weight: 700; letter-spacing: 1px; color: #e5e5e5; text-decoration: none; }
+  .logo-text span { color: #3b82f6; }
+  .nav-dropdown { position: relative; display: inline-block; }
+  .nav-dropbtn {
+    background: none; border: none; color: #999;
+    font-size: 12px; font-family: inherit; cursor: pointer;
+    padding: 6px 10px; border-radius: 6px;
+    transition: color 0.2s, background 0.2s;
+  }
+  .nav-dropbtn:hover { color: #fff; background: rgba(255,255,255,0.08); }
+  .nav-dropdown-content {
+    display: none; position: absolute; right: 0; top: 100%;
+    min-width: 180px;
+    background: #1a1a1a; border-radius: 10px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+    border: 1px solid #333;
+    padding: 6px 0; z-index: 200;
+    animation: fadeDown 0.15s ease;
+  }
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .nav-dropdown-content.show { display: block; }
+  .nav-dropdown-content a {
+    display: block; padding: 8px 16px;
+    font-size: 13px; color: #ccc; text-decoration: none;
+    transition: background 0.15s;
+  }
+  .nav-dropdown-content a:hover { background: #2a2a2a; color: #fff; }
+  .nav-dropdown-content a.active { color: #3b82f6; font-weight: 600; }
+
+  .hamburger {
+    display: flex; flex-direction: column; gap: 4px;
+    background: none; border: none; cursor: pointer; padding: 8px;
+    border-radius: 8px; transition: background 0.2s;
+  }
+  .hamburger:hover { background: rgba(255,255,255,0.05); }
+  .hamburger span {
+    display: block; width: 17px; height: 1.5px;
+    background: #777; border-radius: 1px;
+    transition: background 0.2s, width 0.2s;
+  }
+  .hamburger:hover span { background: #fff; }
+  .hamburger:hover span:nth-child(2) { width: 13px; }
+  .hamburger-menu { display: none; }
+  /* Side menu overlay */
+  .side-menu-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 199; }
+  body:has(#sideMenuCheckbox:checked) .side-menu-overlay { display: block; }
+  .side-menu { position: fixed; top: 0; left: -320px; width: 300px; height: 100vh; background: #fff; box-shadow: 4px 0 40px rgba(0,0,0,0.15); z-index: 200; transition: left 0.3s cubic-bezier(0.4,0,0.2,1); display: flex; flex-direction: column; overflow-y: auto; }
+  body:has(#sideMenuCheckbox:checked) .side-menu { left: 0; }
+  .side-menu-header { padding: 20px 24px; border-bottom: 1px solid #f3f4f6; display: flex; align-items: center; justify-content: space-between; }
+  .side-menu-header .close-btn { background: none; border: none; font-size: 24px; color: #9ca3af; cursor: pointer; padding: 4px; line-height: 1; }
+  .side-menu-header .close-btn:hover { color: #0a0a0a; }
+  .side-menu-links { flex: 1; padding: 8px 0; }
+  .side-menu-links a { display: block; padding: 14px 24px; font-size: 16px; color: #374151; text-decoration: none; font-weight: 500; border-left: 3px solid transparent; transition: background 0.15s,color 0.15s; }
+  .side-menu-links a:hover { background: #f9fafb; color: #0a0a0a; border-left-color: #3b82f6; }
+  .side-menu-links hr { border: none; border-top: 1px solid #f3f4f6; margin: 8px 0; }
+  .side-menu-footer { padding: 20px 24px; border-top: 1px solid #f3f4f6; }
+  .side-menu-footer a { display: block; text-align: center; padding: 12px; background: #3b82f6; color: #fff; border-radius: 10px; text-decoration: none; font-size: 15px; font-weight: 600; }
+  .side-menu-footer a:hover { background: #2563eb; }
+  @media (max-width: 400px) { .side-menu { width: 280px; } }
+
+  .nav-dropdown-content hr { border: none; border-top: 1px solid #333; margin: 4px 0; }
+
+    /* Hero */
+    .hero {
+      padding: 140px 24px 80px;
+      text-align: center;
+      background: linear-gradient(180deg, rgba(59,130,246,0.06) 0%, transparent 60%);
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3rem); font-weight: 700;
+      letter-spacing: -0.02em; color: #fff; margin-bottom: 12px;
+    }
+    .hero .updated { color: #666; font-size: 0.9rem; }
+
+    /* Content */
+    .content {
+      max-width: 780px; margin: 0 auto; padding: 0 24px 100px;
+    }
+    .content h2 {
+      font-size: 1.5rem; font-weight: 600; color: #fff;
+      margin: 56px 0 16px; padding-top: 28px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .content h3 {
+      font-size: 1.1rem; font-weight: 600; color: #ccc;
+      margin: 28px 0 10px;
+    }
+    .content p, .content li {
+      color: #b0b0b0; font-size: 0.95rem; margin-bottom: 12px;
+    }
+    .content ul, .content ol {
+      padding-left: 24px; margin-bottom: 16px;
+    }
+    .content li { margin-bottom: 6px; }
+    .privacy-pledge {
+      background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.2);
+      border-radius: 10px; padding: 28px 32px; margin: 28px 0;
+    }
+    .privacy-pledge p { color: #c8d8f0; font-size: 1.05rem; margin: 0; }
+    .privacy-pledge .pledge-label {
+      color: #3b82f6; font-weight: 700; font-size: 0.8rem;
+      text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; display: block;
+    }
+    .data-table {
+      width: 100%; border-collapse: collapse; margin: 16px 0 24px;
+      font-size: 0.9rem;
+    }
+    .data-table th, .data-table td {
+      text-align: left; padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .data-table th { color: #ccc; font-weight: 600; }
+    .data-table td { color: #b0b0b0; }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 48px 24px 32px; text-align: center;
+    }
+    .footer-inner { max-width: 1100px; margin: 0 auto; }
+    footer p { color: #555; font-size: 0.85rem; margin-bottom: 6px; }
+    footer a { color: #666; font-size: 0.85rem; margin: 0 12px; }
+    footer a:hover { color: #3b82f6; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-left">
+    <input type="checkbox" id="sideMenuCheckbox" style="display:none">
+    <label class="hamburger" for="sideMenuCheckbox" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </label>
+    <a href="index.html" class="logo-text">KONNECT <span>INTERNATIONAL</span></a>
+  </div>
+  <div class="nav-right">
+    <div class="nav-dropdown">
+      <button class="nav-dropbtn" onclick="toggleDropdown('langMenu')">EN ▾</button>
+      <div class="nav-dropdown-content lang-menu" id="langMenu">
+        <a href="#" onclick="setLang('en');return false" class="active">EN</a>
+        <a href="#" onclick="setLang('zh-CN');return false">简</a>
+        <a href="#" onclick="setLang('zh-TW');return false">繁</a>
+      </div>
+    </div>
+  </div>
+  <label class="side-menu-overlay" id="sideMenuOverlay" for="sideMenuCheckbox"></label>
+  <div class="side-menu" id="sideMenu">
+    <div class="side-menu-header">
+      <span style="font-size:15px;font-weight:700;letter-spacing:1px;color:#0a0a0a;">KONNECT <span style="color:#3b82f6;">INTERNATIONAL</span></span>
+      <label class="close-btn" for="sideMenuCheckbox">✕</label>
+    </div>
+    <div class="side-menu-links">
+      <a href="index.html#about">About Konnect International</a>
+      <a href="index.html#kyniskis">About KYNISKIS</a>
+      <a href="how-it-works.html">How KYNISKIS Works</a>
+      <a href="index.html#training">Training &amp; Consulting</a>
+      <a href="index.html#contact">Contact Us</a>
+      <hr>
+      <a href="terms.html">Terms of Use</a>
+      <a href="privacy.html">Privacy Policy</a>
+    </div>
+    <div class="side-menu-footer">
+      <a href="join.html">Join KYNISKIS</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <h1>Privacy Policy</h1>
+  <p class="updated">Last Updated: June 2026</p>
+</section>
+
+<div class="content">
+
+  <div class="privacy-pledge">
+    <span class="pledge-label">Our Pledge</span>
+    <p>
+      Your health data is yours. We don't sell it. We don't share it without your permission. 
+      And we give you tools to delete it anytime.<br>
+      We built Kyniskis to improve lives, not invade them.
+    </p>
+  </div>
+
+  <h2>1. Introduction</h2>
+  <p>
+    Konnect International Limited ("Konnect International," "we," "us," or "our") is committed to protecting your privacy.
+    This Privacy Policy explains how we collect, use, disclose, and safeguard your personal data when you use the Kyniskis Band, 
+    the Kyniskis mobile application, our website at konnectlabai.com, and related services (the "Services").
+  </p>
+  <p>
+    This policy is drafted in compliance with the <strong>Personal Data (Privacy) Ordinance (Cap. 486)</strong> of the Hong Kong 
+    Special Administrative Region ("PDPO"). If you have questions about your rights under the PDPO, you may also contact the 
+    PCPD (<a href="https://www.pcpd.org.hk" target="_blank" rel="noopener">www.pcpd.org.hk</a>).
+  </p>
+
+  <h2>2. What We Collect</h2>
+  <p>We collect the following categories of data to provide and improve the Services:</p>
+
+  <table class="data-table">
+    <thead>
+      <tr><th>Category</th><th>Examples</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>Account Data</strong></td><td>Name, email address, date of birth, profile photo</td></tr>
+      <tr><td><strong>Wellness Data</strong></td><td>Heart rate, HRV, SpO₂, skin temperature, respiratory rate, sleep stages, activity levels, strain scores, recovery metrics</td></tr>
+      <tr><td><strong>Device Data</strong></td><td>Device ID, firmware version, battery level, charging patterns</td></tr>
+      <tr><td><strong>Usage Data</strong></td><td>App interactions, feature usage, session duration, crash reports</td></tr>
+      <tr><td><strong>Payment Data</strong></td><td>Transaction records, subscription tier (full payment details processed by our payment processor)</td></tr>
+      <tr><td><strong>Location Data</strong></td><td>IP-based approximate location (we do not track precise GPS location)</td></tr>
+    </tbody>
+  </table>
+
+  <h2>3. How We Collect Your Data</h2>
+  <h3>Directly From You</h3>
+  <p>
+    When you create an account, complete your profile, contact support, or participate in surveys and research programs.
+  </p>
+  <h3>From the Kyniskis Band</h3>
+  <p>
+    The device continuously measures physiological signals from your body. This data is transmitted to your phone via Bluetooth 
+    and synced to our servers to generate insights.
+  </p>
+  <h3>Automatically</h3>
+  <p>
+    We collect certain data automatically when you interact with the Services, including through cookies and similar technologies 
+    (see Section 10).
+  </p>
+  <h3>From Third-Party Integrations</h3>
+  <p>
+    If you choose to connect third-party services (such as Apple Health, Google Fit, or other fitness platforms), we receive 
+    data based on the permissions you grant.
+  </p>
+
+  <h2>4. How We Use Your Data</h2>
+  <p>We use your data for the following purposes:</p>
+  <ul>
+    <li><strong>Service Delivery:</strong> To operate the Services, generate personalized insights, and provide coaching recommendations.</li>
+    <li><strong>Research &amp; Development:</strong> To improve our algorithms, develop new features, and conduct scientific research — using de-identified, aggregated data.</li>
+    <li><strong>Communication:</strong> To send service updates, membership information, and support responses.</li>
+    <li><strong>Marketing (With Consent):</strong> To send promotional content about Kyniskis products and features. You may opt out at any time.</li>
+    <li><strong>Legal Compliance:</strong> To comply with applicable laws, regulations, and legal processes.</li>
+  </ul>
+
+  <h2>5. Data Sharing</h2>
+  <p>We are clear about who we share your data with — and who we don't.</p>
+  <h3>We May Share With:</h3>
+  <ul>
+    <li><strong>Service Providers:</strong> Cloud hosting, analytics, payment processing, and customer support vendors who help us operate the Services. They are contractually bound to protect your data.</li>
+    <li><strong>With Your Consent:</strong> If you direct us to share data with a third party (e.g., a healthcare provider, coach, or integrated app).</li>
+    <li><strong>Legal Reasons:</strong> When required by law, court order, or to protect our rights and the safety of our users.</li>
+    <li><strong>Business Transfers:</strong> In the event of a merger, acquisition, or sale of assets, your data may be transferred — with prior notice to you.</li>
+  </ul>
+  <h3>We NEVER:</h3>
+  <ul>
+    <li>Sell your personal data to third parties</li>
+    <li>Sell your health or wellness data</li>
+    <li>Share identifiable health data with advertisers or data brokers</li>
+  </ul>
+
+  <h2>6. Data Security</h2>
+  <p>
+    We implement commercially reasonable technical and organizational measures to protect your data, including encryption 
+    in transit (TLS) and at rest (AES-256), access controls, and regular security audits. However, no method of electronic storage 
+    or transmission is 100% secure. We cannot guarantee absolute security.
+  </p>
+  <p>
+    By default, your wellness data is stored locally on your device and synced to our secure cloud infrastructure. You retain 
+    control over your data at all times.
+  </p>
+
+  <h2>7. Data Retention</h2>
+  <p>
+    We retain your personal data for as long as your account remains active or as needed to provide the Services. If you delete 
+    your account, we will delete or de-identify your personal data within 60 days, except where we are required to retain it 
+    for legal or regulatory purposes.
+  </p>
+  <p>
+    Aggregated, de-identified data (which cannot be linked back to you) may be retained indefinitely for research and development.
+  </p>
+
+  <h2>8. Your Rights</h2>
+  <p>
+    Under the Hong Kong PDPO and our own principles, you have the following rights:
+  </p>
+  <ul>
+    <li><strong>Access:</strong> You may request a copy of the personal data we hold about you.</li>
+    <li><strong>Correction:</strong> You may request correction of inaccurate or incomplete data.</li>
+    <li><strong>Deletion:</strong> You may delete your account and associated data at any time through the Kyniskis App or by contacting us.</li>
+    <li><strong>Data Portability:</strong> You may export your wellness data in a standard, machine-readable format through the app.</li>
+    <li><strong>Withdraw Consent:</strong> You may withdraw consent for processing where consent is the legal basis.</li>
+  </ul>
+  <p>
+    To exercise these rights, contact us at <a href="mailto:jeff.qiao@konnectlabai.com">jeff.qiao@konnectlabai.com</a>. 
+    We will respond within 30 days. You also have the right to lodge a complaint with the 
+    <strong>PCPD</strong> 
+    (<a href="https://www.pcpd.org.hk" target="_blank" rel="noopener">www.pcpd.org.hk</a>).
+  </p>
+
+  <h2>9. Children's Privacy</h2>
+  <p>
+    The Services are not directed to children under 13. We do not knowingly collect personal data from children under 13. 
+    If we become aware that a child under 13 has provided us with personal data, we will delete it promptly. If you believe 
+    a child under 13 has provided us with data, please contact us.
+  </p>
+  <p>
+    For users between 13 and 18, we require verifiable parental consent before collecting wellness data.
+  </p>
+
+  <h2>10. Cookies &amp; Tracking Technologies</h2>
+  <p>
+    Our website uses cookies and similar technologies to remember your preferences, analyze site traffic, and improve your 
+    experience. We use both session cookies (which expire when you close your browser) and persistent cookies (which remain 
+    until deleted).
+  </p>
+  <p>
+    You can control cookie preferences through your browser settings. Note that disabling cookies may affect website functionality.
+  </p>
+
+  <h2>11. International Data Transfers</h2>
+  <p>
+    As a Hong Kong-based company, your data is primarily stored and processed in Hong Kong SAR. If we transfer data to service 
+    providers in other jurisdictions, we ensure adequate safeguards are in place through contractual clauses or other mechanisms 
+    that provide a comparable level of protection as required under the PDPO.
+  </p>
+
+  <h2>12. Changes to This Policy</h2>
+  <p>
+    We may update this Privacy Policy from time to time. Material changes will be communicated via email and/or through the 
+    Kyniskis App. The "Last Updated" date at the top of this page indicates when the policy was last revised.
+  </p>
+
+  <h2>13. Contact Us</h2>
+  <p>
+    For privacy-related inquiries, data requests, or complaints:
+  </p>
+  <p>
+    <strong>Konnect International Limited</strong><br>
+    Data Protection Officer<br>
+    Room 1901, Hip Shing Hong Centre<br>
+    55 Des Voeux Road Central<br>
+    Hong Kong SAR<br>
+    Email: <a href="mailto:jeff.qiao@konnectlabai.com">jeff.qiao@konnectlabai.com</a>
+  </p>
+  <p style="margin-top: 16px; color: #888; font-size: 0.85rem;">
+    You may also contact PCPD:<br>
+    Room 1303, 13/F, Sunlight Tower, 248 Queen's Road East, Wan Chai, Hong Kong<br>
+    Website: <a href="https://www.pcpd.org.hk" target="_blank" rel="noopener">www.pcpd.org.hk</a> | Hotline: +852 2827 2827
+  </p>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <p>&copy; 2026 Konnect International Limited. All rights reserved.</p>
+    <p>
+      <a href="/">Home</a>
+      <a href="/how-it-works.html">How It Works</a>
+      <a href="/privacy.html">Privacy Policy</a>
+      <a href="/terms.html">Terms of Use</a>
+    </p>
+  </div>
+</footer>
+
+
+<script>
+var sideLinks = document.querySelectorAll('.side-menu-links a');
+for (var i = 0; i < sideLinks.length; i++) {
+  sideLinks[i].addEventListener('click', function() {
+    document.getElementById('sideMenuCheckbox').checked = false;
+  });
+}
+function toggleDropdown(id) {
+  var d = document.getElementById(id);
+  d.classList.toggle('show');
+}
+window.onclick = function(e) {
+  if (!e.target.matches('.nav-dropbtn') && !e.target.matches('.hamburger') && !e.target.matches('.hamburger span')) {
+    document.querySelectorAll('.nav-dropdown-content').forEach(function(d) {
+      d.classList.remove('show');
+    });
+  }
+};
+function setLang(lang) {
+  document.querySelectorAll('#langMenu a').forEach(function(a) {
+    a.classList.remove('active');
+    if (a.textContent.trim() === (lang === 'en' ? 'EN' : lang === 'zh-CN' ? '简' : '繁')) {
+      a.classList.add('active');
+    }
+  });
+}
+</script>
+
+</body>
+</html>

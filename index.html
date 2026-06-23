@@ -1,0 +1,1387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Konnect International — AI-Empowered Health Solutions</title>
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <script>
+  if (window.location.hash && window.location.hash.includes('type=recovery')) {
+    window.location.replace('update-password.html' + window.location.hash);
+  }
+  </script>
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+    background: #fff;
+    color: #0a0a0a;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ===== NAV ===== */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255,255,255,0.85);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    padding: 0 40px; height: 56px;
+    display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+  }
+  nav .logo-text { font-size: 15px; font-weight: 700; letter-spacing: 1px; color: #0a0a0a; text-decoration: none; }
+  nav .logo-text span { color: #3b82f6; }
+  nav { display: flex; align-items: center; justify-content: space-between; }
+  .nav-left { display: flex; align-items: center; gap: 14px; }
+  .nav-right { display: flex; align-items: center; gap: 12px; }
+
+  /* Hamburger */
+  .hamburger {
+    display: flex; flex-direction: column; gap: 4px;
+    cursor: pointer; padding: 8px;
+    border-radius: 8px; transition: background 0.2s;
+    border: none; background: none;
+  }
+  .hamburger:hover { background: rgba(0,0,0,0.04); }
+  .hamburger span {
+    display: block; width: 17px; height: 1.5px;
+    background: #4b5563; border-radius: 1px;
+    transition: background 0.2s, width 0.2s;
+  }
+  .hamburger:hover span { background: #0a0a0a; }
+  .hamburger:hover span:nth-child(2) { width: 13px; }
+
+  /* Side menu overlay */
+  .side-menu-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,0.5); z-index: 199;
+    transition: opacity 0.3s ease;
+  }
+  body:has(#sideMenuCheckbox:checked) .side-menu-overlay { display: block; }
+
+  /* Side menu panel — slides from left */
+  .side-menu {
+    position: fixed; top: 0; left: -320px;
+    width: 300px; height: 100vh;
+    background: #fff;
+    box-shadow: 4px 0 40px rgba(0,0,0,0.15);
+    z-index: 200;
+    transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex; flex-direction: column;
+    overflow-y: auto;
+  }
+  body:has(#sideMenuCheckbox:checked) .side-menu { left: 0; }
+  .side-menu-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid #f3f4f6;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .side-menu-header .close-btn {
+    background: none; border: none; font-size: 24px; color: #9ca3af;
+    cursor: pointer; padding: 4px; line-height: 1;
+  }
+  .side-menu-header .close-btn:hover { color: #0a0a0a; }
+  .side-menu-links {
+    flex: 1; padding: 8px 0;
+  }
+  .side-menu-links a {
+    display: block; padding: 14px 24px;
+    font-size: 16px; color: #374151; text-decoration: none;
+    font-weight: 500; transition: background 0.15s, color 0.15s;
+    border-left: 3px solid transparent;
+  }
+  .side-menu-links a:hover {
+    background: #f9fafb; color: #0a0a0a;
+    border-left-color: #3b82f6;
+  }
+  .side-menu-links hr { border: none; border-top: 1px solid #f3f4f6; margin: 8px 0; }
+  .side-menu-footer {
+    padding: 20px 24px;
+    border-top: 1px solid #f3f4f6;
+  }
+  .side-menu-footer a {
+    display: block; text-align: center;
+    padding: 12px;
+    background: #3b82f6; color: #fff;
+    border-radius: 10px; text-decoration: none;
+    font-size: 15px; font-weight: 600;
+    transition: background 0.15s;
+  }
+  .side-menu-footer a:hover { background: #2563eb; }
+  @media (max-width: 400px) { .side-menu { width: 280px; } }
+
+  /* Dropdowns */
+  .nav-dropdown { position: relative; display: inline-block; }
+  .nav-dropbtn {
+    background: none; border: none; color: #6b7280;
+    font-size: 12px; font-family: inherit; cursor: pointer;
+    padding: 6px 10px; border-radius: 6px;
+    transition: color 0.2s, background 0.2s;
+  }
+  .nav-dropbtn:hover { color: #0a0a0a; background: #f3f4f6; }
+  .nav-join-btn {
+    display: inline-block;
+    padding: 5px 14px;
+    background: #3b82f6; color: #fff;
+    border-radius: 6px; text-decoration: none;
+    font-size: 12px; font-weight: 600;
+    transition: background 0.2s;
+  }
+  .nav-join-btn:hover { background: #2563eb; }
+  .nav-dropdown-content {
+    display: none; position: absolute; right: 0; top: 100%;
+    min-width: 180px;
+    background: #fff; border-radius: 10px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    border: 1px solid #e5e7eb;
+    padding: 6px 0; z-index: 200;
+    animation: fadeDown 0.15s ease;
+  }
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .nav-dropdown-content.show { display: block; }
+  .nav-dropdown-content a {
+    display: block; padding: 8px 16px;
+    font-size: 13px; color: #374151; text-decoration: none;
+    transition: background 0.15s;
+  }
+  .nav-dropdown-content a:hover { background: #f3f4f6; color: #0a0a0a; }
+  .nav-dropdown-content a.active { color: #3b82f6; font-weight: 600; }
+  .nav-dropdown-content hr { border: none; border-top: 1px solid #e5e7eb; margin: 4px 0; }
+
+  /* ===== SECTION ALTERNATION ===== */
+  section { width: 100%; }
+  .section-dark { background: #0a0a0a; color: #fff; }
+  .section-light { background: #fff; color: #0a0a0a; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+
+  /* ===== HERO — Dark ===== */
+  .hero {
+    min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    text-align: center; padding: 56px 24px;
+    position: relative; overflow: hidden;
+    background: url('crossfit-gym-bg.png') center center / cover no-repeat;
+  }
+  .hero::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.35), rgba(0,0,0,0.55));
+    z-index: 0;
+  }
+  .hero-video {
+    display: none;
+  }
+  .hero-video.active { display: none; }
+  .hero-content { position: relative; z-index: 1; max-width: 800px; }
+  .hero-logo {
+    width: 140px; height: 140px; margin: 0 auto 32px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hero-logo img { width: 140px; height: 140px; }
+  .hero-tag {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 4px;
+    color: #3b82f6; margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-size: clamp(44px, 8vw, 80px); font-weight: 700; line-height: 1.05;
+    color: #fff; margin-bottom: 20px; white-space: nowrap;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.7), 0 1px 3px rgba(0,0,0,0.4);
+  }
+  .hero h1 em { font-style: normal; color: #60a5fa; text-shadow: 0 2px 12px rgba(0,0,0,0.7); }
+  .hero p {
+    font-size: 18px; color: #e2e8f0; max-width: 560px; margin: 0 auto;
+    line-height: 1.7;
+    text-shadow: 0 1px 6px rgba(0,0,0,0.6);
+  }
+  .hero-tag {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 4px;
+    color: #93c5fd; margin-bottom: 20px;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+  }
+  .hero-join-btn {
+    display: inline-block; margin-top: 24px;
+    padding: 12px 32px;
+    background: #3b82f6; color: #fff;
+    border-radius: 8px; text-decoration: none;
+    font-size: 14px; font-weight: 600;
+    transition: background 0.2s;
+  }
+  .hero-join-btn:hover { background: #2563eb; }
+
+  /* ===== FULL-BLEED PHOTO STRIP (Dark background) ===== */
+  .photo-strip {
+    height: 70vh; width: 100%;
+    background: #0a0a0a;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden; position: relative;
+  }
+  .photo-strip img, .photo-strip video {
+    width: 100%; height: 100%; object-fit: cover;
+  }
+  .photo-strip .overlay {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .photo-strip .overlay h2 {
+    font-size: clamp(28px, 5vw, 48px); font-weight: 700;
+    color: #fff; text-align: center; text-shadow: 0 2px 20px rgba(0,0,0,0.6);
+    max-width: 700px; line-height: 1.2;
+  }
+
+  /* ===== SERVICES — Light ===== */
+  .services { padding: 96px 0; text-align: center; }
+  .section-label {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 4px;
+    color: #3b82f6; margin-bottom: 16px;
+  }
+  .section-title {
+    font-size: clamp(28px, 5vw, 44px); font-weight: 700; margin-bottom: 12px;
+  }
+  .section-sub {
+    font-size: 16px; color: #6b7280; max-width: 560px; margin: 0 auto 64px; line-height: 1.7;
+  }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2px;
+  }
+  .service-card {
+    text-align: center; padding: 48px 28px;
+    transition: background 0.3s;
+    border-radius: 12px;
+  }
+  .service-card:hover { background: rgba(255,255,255,0.04); }
+  .service-card svg { margin-bottom: 20px; }
+  .service-card h3 { font-size: 20px; font-weight: 600; margin-bottom: 8px; color: #e5e5e5; }
+  .service-card p { font-size: 14px; color: #9ca3af; line-height: 1.6; max-width: 260px; margin: 0 auto; }
+
+  /* ===== KYNISKIS — Dark ===== */
+  .kyniskis { padding: 200px 0 96px; }
+  .kyniskis-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  }
+  .kyniskis-visual { text-align: center; }
+  .kyniskis-visual .logo-circle {
+    width: 240px; height: 240px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .kyniskis-visual .logo-circle img { width: 480px; height: auto; }
+  .kyniskis-text h2 { font-size: 40px; font-weight: 700; line-height: 1.1; color: #0a0a0a; }
+  .kyniskis-text .origin {
+    font-size: 13px; color: #3b82f6; text-transform: uppercase; letter-spacing: 2px;
+    margin: 16px 0 24px;
+  }
+  .kyniskis-text p { font-size: 16px; color: #4b5563; line-height: 1.7; margin-bottom: 16px; }
+  .kyniskis-text p strong { color: #0a0a0a; }
+  .kyniskis-cats {
+    display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px;
+  }
+  .kyniskis-cats span {
+    font-size: 11px; padding: 6px 14px; border-radius: 20px;
+    background: #f3f4f6; color: #4b5563;
+    border: 1px solid #e5e7eb;
+  }
+
+  /* ===== FULL-BLEED PHOTO STRIP 2 (with Jeff) ===== */
+  .photo-strip-light { background: #f5f5f5; }
+
+  /* ===== TRAINING HERO ===== */
+  .training-hero {
+    height: 75vh; width: 100%; position: relative;
+    display: flex; align-items: flex-start; justify-content: flex-start;
+    overflow: hidden;
+    padding: 80px 60px;
+  }
+  .training-hero-bg {
+    position: absolute; inset: 0;
+    background: url('jeff.jpg') center center / cover no-repeat;
+    filter: brightness(0.55);
+    transform: scale(1.02);
+  }
+  .training-hero-overlay {
+    position: relative; z-index: 1; text-align: left;
+  }
+  .training-hero-overlay h2 {
+    font-size: clamp(36px, 7vw, 72px); font-weight: 700; color: #fff;
+    line-height: 1.1; text-shadow: 0 2px 40px rgba(0,0,0,0.5);
+  }
+
+  /* ===== TRAINING TEXT (fallback from old grid) ===== */
+  .training-text h3 { font-size: 32px; font-weight: 700; margin-bottom: 4px; color: #0a0a0a; }
+  .training-text .certs {
+    font-size: 12px; color: #3b82f6; text-transform: none; letter-spacing: 0; max-width: 180px; line-height: 1.4;
+    margin-bottom: 24px;
+  }
+  .training-text p { font-size: 16px; color: #4b5563; line-height: 1.7; margin-bottom: 12px; }
+  .training-badges { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+  .training-badges span a { color: #3b82f6; text-decoration: underline; text-underline-offset: 2px; text-decoration-color: rgba(59,130,246,0.3); transition: text-decoration-color 0.2s; }
+  .training-badges span a:hover { text-decoration-color: #3b82f6; }
+  .training-badges span {
+    font-size: 11px; padding: 6px 14px; border-radius: 20px;
+    background: #f3f4f6; color: #4b5563;
+    border: 1px solid #e5e7eb;
+  }
+
+  /* ===== CONTACT — Dark ===== */
+  .contact { padding: 96px 24px; text-align: center; }
+  .contact-email {
+    font-size: 22px; color: #3b82f6; text-decoration: none;
+  }
+  .contact-address { font-size: 14px; color: #6b7280; margin-top: 12px; }
+
+  /* ===== CTA — Light ===== */
+  .cta { padding: 96px 24px; text-align: center; }
+  .cta h2 { font-size: clamp(28px, 5vw, 44px); font-weight: 700; margin-bottom: 16px; color: #0a0a0a; }
+  .cta p { font-size: 16px; color: #6b7280; margin-bottom: 32px; }
+
+  /* ===== FOOTER — Dark ===== */
+  footer { background: #0a0a0a; color: #fff; padding: 48px 40px 32px; }
+  .footer-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 32px; max-width: 1100px; margin: 0 auto 40px;
+  }
+  .footer-col h4 {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 2px;
+    color: #4b5563; margin-bottom: 16px;
+  }
+  .footer-col a {
+    display: block; font-size: 13px; color: #9ca3af; text-decoration: none;
+    margin-bottom: 8px; transition: color 0.2s;
+  }
+  .footer-col a:hover { color: #fff; }
+  .footer-bottom {
+    max-width: 1100px; margin: 0 auto; padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px;
+  }
+  .footer-bottom .copy { font-size: 12px; color: #4b5563; }
+
+  
+  /* ===== CHAT WIDGET — KYNISKIS Branded ===== */
+  .chat-bubble {
+    position: fixed; bottom: 80px; right: 24px; z-index: 101;
+    width: 48px; height: 48px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+  }
+  /* 光晕：用伪元素 box-shadow，不用 filter drop-shadow（Safari 兼容） */
+  .chat-bubble::after {
+    content: '';
+    position: absolute; inset: -4px;
+    border-radius: 50%;
+    z-index: -1;
+    box-shadow:
+      0 0 4px 2px rgba(255,255,255,0.20),
+      0 0 14px 6px rgba(255,255,255,0.08),
+      0 0 32px 12px rgba(255,255,255,0.02);
+  }
+  .chat-bubble:hover { transform: scale(1.08); }
+  .chat-bubble img {
+    width: 48px; height: 48px;
+  }
+  .chat-window {
+    position: relative;
+    width: 360px; max-width: calc(100vw - 48px); height: 480px; max-height: calc(100vh - 200px);
+    background: #0f172a; border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+    display: none; flex-direction: column; overflow: hidden;
+  }
+  .chat-window.open { display: flex; position: fixed; bottom: 148px; right: 24px; z-index: 101; }
+
+  .chat-popup {
+    position: fixed; bottom: 148px; right: 88px; z-index: 102;
+    background: #1e293b; border: 1px solid rgba(59,130,246,0.3);
+    border-radius: 14px; padding: 14px 18px;
+    display: none; align-items: center; gap: 12px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    animation: popupBounce 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    max-width: 280px;
+  }
+  .chat-popup.show { display: flex; }
+  .chat-popup .popup-avatar {
+    width: 40px; height: 40px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .chat-popup .popup-avatar img { width: 40px; height: 40px; }
+  .chat-popup .popup-text {
+    font-size: 13px; color: #e2e8f0; line-height: 1.45;
+  }
+  .chat-popup .popup-close {
+    position: absolute; top: 4px; right: 8px;
+    background: none; border: none; color: #475569;
+    cursor: pointer; font-size: 14px; padding: 2px;
+  }
+  @keyframes popupBounce {
+    0% { transform: translateY(10px) scale(0.9); opacity: 0; }
+    60% { transform: translateY(-4px) scale(1.02); }
+    100% { transform: translateY(0) scale(1); opacity: 1; }
+  }
+  @media (max-width: 768px) {
+    .chat-popup { right: 72px; bottom: 136px; max-width: 240px; }
+  }
+
+
+  .chat-header {
+    padding: 16px 20px; border-bottom: 1px solid rgba(255,255,255,0.06);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .chat-header h4 { font-size: 14px; color: #f1f5f9; font-weight: 600; }
+  .chat-header span { font-size: 11px; color: #3b82f6; }
+  .chat-powered {
+    text-align: center; padding: 6px 0 10px;
+    font-size: 10px; color: #475569;
+    letter-spacing: 0.5px;
+    display: flex; align-items: center; justify-content: center; gap: 5px;
+  }
+  .chat-powered .ds-badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    background: rgba(59,130,246,0.1); padding: 3px 10px; border-radius: 12px;
+    border: 1px solid rgba(59,130,246,0.15);
+  }
+  .chat-powered .ds-badge strong { color: #3b82f6; font-weight: 600; }
+  .chat-close { background: none; border: none; color: #64748b; cursor: pointer; font-size: 18px; padding: 4px; }
+  .chat-close:hover { color: #f1f5f9; }
+  .chat-body { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+  .chat-msg { max-width: 85%; padding: 10px 14px; border-radius: 12px; font-size: 13px; line-height: 1.55; }
+  .chat-msg.user { align-self: flex-end; background: #3b82f6; color: #fff; border-bottom-right-radius: 4px; }
+  .chat-msg.bot { align-self: flex-start; background: #1e293b; color: #e2e8f0; border-bottom-left-radius: 4px; }
+  .chat-input-area { padding: 12px 16px; border-top: 1px solid rgba(255,255,255,0.06); display: flex; gap: 8px; }
+  .chat-input-area textarea {
+    flex: 1; background: #1e293b; border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px; padding: 10px 14px; color: #e2e8f0; font-size: 13px; outline: none;
+    resize: none; font-family: inherit; line-height: 1.5;
+    min-height: 42px; max-height: 120px; overflow-y: auto;
+  }
+  .chat-input-area textarea::placeholder { color: #475569; }
+  .chat-input-area button {
+    background: #3b82f6; border: none; border-radius: 8px; padding: 10px 16px;
+    color: #fff; font-size: 13px; cursor: pointer; font-weight: 600;
+  }
+  .chat-input-area button:hover { background: #2563eb; }
+  .chat-typing { align-self: flex-start; color: #64748b; font-size: 12px; padding: 4px 14px; display: none; }
+
+  /* Chat disclaimer overlay */
+  .chat-disclaimer {
+    position: absolute; top: 55px; left: 0; right: 0; bottom: 0;
+    background: rgba(15,23,42,0.98);
+    display: none; flex-direction: column; align-items: center; justify-content: center;
+    padding: 28px 24px; z-index: 10; text-align: center;
+  }
+  .chat-disclaimer.show { display: flex; }
+  .chat-disclaimer p { font-size: 13px; color: #94a3b8; line-height: 1.7; max-width: 280px; margin: 0; }
+  .chat-disclaimer p a { color: #60a5fa; text-decoration: underline; }
+  .chat-disclaimer p a:hover { color: #93bbfd; }
+  .chat-disclaimer .disclaimer-btns { display: flex; gap: 12px; margin-top: 20px; }
+  .chat-disclaimer .btn-continue { background: #3b82f6; border: none; border-radius: 8px; padding: 10px 22px; color: #fff; font-size: 13px; cursor: pointer; font-weight: 600; }
+  .chat-disclaimer .btn-continue:hover { background: #2563eb; }
+  .chat-disclaimer .btn-close { background: transparent; border: 1px solid #334155; border-radius: 8px; padding: 10px 22px; color: #94a3b8; font-size: 13px; cursor: pointer; }
+  .chat-disclaimer .btn-close:hover { color: #e2e8f0; border-color: #475569; }
+  @media (max-width: 768px) {
+    .chat-window { width: calc(100vw - 32px); right: 16px; bottom: 140px; }
+    .chat-bubble { right: 16px; bottom: 72px; }
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 36px; }
+    .kyniskis-grid, .training-grid { grid-template-columns: 1fr; gap: 48px; }
+    .kyniskis { padding: 120px 24px 64px; }
+    .training { padding: 64px 24px; }
+    .photo-strip { height: 50vh; }
+    .training-photo { width: 240px; height: 240px; }
+
+    /* Mobile nav — tighter spacing, smaller buttons */
+    nav { padding: 0 14px; }
+    .nav-left { gap: 7px; }
+    .nav-right { gap: 6px; }
+    nav .logo-text { font-size: 13px; letter-spacing: 0.3px; }
+    .nav-join-btn { padding: 4px 10px; font-size: 11px; border-radius: 5px; font-weight: 500; }
+    .nav-dropbtn { font-size: 11px; padding: 4px 5px; }
+    .wakehr-grid { grid-template-columns: 1fr !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav>
+  <div class="nav-left">
+    <!-- Hidden checkbox for pure CSS toggle -->
+    <input type="checkbox" id="sideMenuCheckbox" style="display:none">
+    <label class="hamburger" for="sideMenuCheckbox" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </label>
+    <a href="#" class="logo-text">KONNECT <span>INTERNATIONAL</span></a>
+  </div>
+
+  <div class="nav-right">
+    <a href="join.html" class="nav-join-btn" id="navJoinBtn" data-i18n="nav-join">Join In</a>
+    <a href="login.html" id="navLoginLink" class="nav-join-btn" style="background:transparent;border:1px solid #3b82f6;color:#3b82f6;" data-i18n="nav-signup">Sign Up</a>
+    <div class="nav-dropdown">
+      <button class="nav-dropbtn" onclick="toggleDropdown('langMenu')">EN ▾</button>
+      <div class="nav-dropdown-content lang-menu" id="langMenu">
+        <a href="#" onclick="setLang('en');return false" class="active">EN</a>
+        <a href="#" onclick="setLang('zh-CN');return false">简</a>
+        <a href="#" onclick="setLang('zh-TW');return false">繁</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hamburger menu panel -->
+  <!-- Side Menu Overlay -->
+  <label class="side-menu-overlay" id="sideMenuOverlay" for="sideMenuCheckbox"></label>
+
+  <!-- Side Menu Panel -->
+  <div class="side-menu" id="sideMenu">
+    <div class="side-menu-header">
+      <span style="font-size:15px;font-weight:700;letter-spacing:1px;color:#0a0a0a;">KONNECT <span style="color:#3b82f6;">INTERNATIONAL</span></span>
+      <label class="close-btn" for="sideMenuCheckbox">✕</label>
+    </div>
+    <div class="side-menu-links">
+      <a href="#about"  data-i18n="nav-about">About Konnect International</a>
+      <a href="#kyniskis"  data-i18n="nav-kyniskis">About KYNISKIS</a>
+      <a href="how-it-works.html"  data-i18n="nav-how">How KYNISKIS Works</a>
+      <a href="#training"  data-i18n="nav-training">Training &amp; Consulting</a>
+      <a href="#contact"  data-i18n="nav-contact">Contact Us</a>
+      <hr>
+      <a href="terms.html"  data-i18n="nav-terms">Terms of Use</a>
+      <a href="privacy.html"  data-i18n="nav-privacy">Privacy Policy</a>
+    </div>
+    <div class="side-menu-footer">
+      <a href="join.html" data-i18n="nav-join-kyniskis">Join KYNISKIS</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== HERO — BLACK BG · WHITE TEXT ===== -->
+<section class="hero section-dark" id="home">
+  <video class="hero-video" autoplay muted loop playsinline>
+    <source src="hero.mp4" type="video/mp4">
+  </video>
+  <div class="hero-content">
+    <div class="hero-logo">
+      <img src="Logo.png" alt="KYNISKIS">
+    </div>
+    <div class="hero-tag" data-i18n="hero-tag">AI-Empowered Health Solutions</div>
+    <h1 data-i18n="hero-title">Train. Sleep. <em>Recovery.</em></h1>
+    <p data-i18n="hero-sub">For everyday readiness and lasting well-being.</p>
+    <a href="join.html" class="hero-join-btn" id="heroJoinBtn" data-i18n="hero-join">Join In</a>
+  </div>
+</section>
+
+<!-- ===== DATA PROOF ===== -->
+<section class="section-dark">
+  <div class="section-inner" style="padding:80px 24px;text-align:center;">
+    <div class="section-label" data-i18n="data-label">The Proof</div>
+    <h2 class="section-title" style="color:#fff;" data-i18n="data-title">Ten years of data-driven training.<br>The numbers don't lie.</h2>
+    <p class="section-sub" style="max-width:620px;color:#9ca3af;" data-i18n="data-sub">
+      Before KYNISKIS was a product, it was a method: track everything, trust the data, adjust daily.<br>
+      These are real numbers from a real person who has been doing exactly that since 2015.
+    </p>
+
+    <!-- Timeline -->
+    <div style="display:flex;justify-content:center;gap:8px;margin:40px 0 32px;flex-wrap:wrap;">
+      <span style="font-size:11px;color:#9ca3af;padding:3px 10px;border:1px solid #333;border-radius:12px;" data-i18n="data-timeline-garmin">2015 · Garmin</span>
+      <span style="font-size:11px;color:#666;">→</span>
+      <span style="font-size:11px;color:#9ca3af;padding:3px 10px;border:1px solid #333;border-radius:12px;" data-i18n="data-timeline-cf">2019 · CrossFit</span>
+      <span style="font-size:11px;color:#666;">→</span>
+      <span style="font-size:11px;color:#9ca3af;padding:3px 10px;border:1px solid #333;border-radius:12px;" data-i18n="data-timeline-fullcf">2021 · Full CrossFit</span>
+      <span style="font-size:11px;color:#666;">→</span>
+      <span style="font-size:11px;color:#9ca3af;padding:3px 10px;border:1px solid #333;border-radius:12px;" data-i18n="data-timeline-autosleep">2023 · AutoSleep</span>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;max-width:900px;margin:0 auto;">
+      <div style="text-align:center;">
+        <div style="font-size:40px;font-weight:700;color:#3b82f6;">4,099</div>
+        <div style="font-size:12px;color:#9ca3af;margin-top:8px;line-height:1.5;" data-i18n="data-metric-sessions">Training sessions<br>since 2015</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:40px;font-weight:700;color:#3b82f6;">1,062</div>
+        <div style="font-size:12px;color:#9ca3af;margin-top:8px;line-height:1.5;" data-i18n="data-metric-sleep">Nights of sleep<br>continuously tracked</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:40px;font-weight:700;color:#3b82f6;">51<span style="font-size:18px;">bpm</span></div>
+        <div style="font-size:12px;color:#9ca3af;margin-top:8px;line-height:1.5;" data-i18n="data-metric-hr">Average resting<br>heart rate (90 days)</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:40px;font-weight:700;color:#3b82f6;">87<span style="font-size:18px;">%</span></div>
+        <div style="font-size:12px;color:#9ca3af;margin-top:8px;line-height:1.5;" data-i18n="data-metric-recovery">Mornings waking<br>fully recovered</div>
+      </div>
+    </div>
+
+    <!-- Trends -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:700px;margin:40px auto 0;">
+      <div style="background:#111;border-radius:12px;padding:20px;border:1px solid #1e1e1e;">
+        <div style="font-size:24px;font-weight:700;color:#e5e5e5;">16% → 20.6%</div>
+        <div style="font-size:12px;color:#9ca3af;margin-top:4px;" data-i18n="data-trend-deepsleep">Deep sleep ratio · 3yr trend</div>
+      </div>
+      <div style="background:#111;border-radius:12px;padding:20px;border:1px solid #1e1e1e;">
+        <div style="font-size:24px;font-weight:700;color:#e5e5e5;">54.3 → 51.9</div>
+        <div style="font-size:12px;color:#9ca3af;margin-top:4px;" data-i18n="data-trend-sleephr">Sleeping HR (bpm) · 3yr trend</div>
+      </div>
+      <div style="background:#111;border-radius:12px;padding:20px;border:1px solid #1e1e1e;">
+        <div style="font-size:24px;font-weight:700;color:#e5e5e5;">93.8% → 95.4%</div>
+        <div style="font-size:12px;color:#9ca3af;margin-top:4px;" data-i18n="data-trend-spo2">Min SpO₂ · 3yr trend</div>
+      </div>
+    </div>
+
+    <p style="font-size:13px;color:#666;margin-top:40px;max-width:580px;margin-left:auto;margin-right:auto;line-height:1.7;" data-i18n="data-methodology">
+      This is the result of a methodology — not a device. KYNISKIS was built to make this same approach accessible to anyone who wants to train with data, not guesswork.
+    </p>
+
+    <!-- Wake HR Effect -->
+    <div style="max-width:700px;margin:56px auto 0;text-align:left;">
+      <div style="font-size:12px;font-weight:600;color:#3b82f6;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;" data-i18n="wake-title">The Wake HR Anomaly</div>
+      <h3 style="font-size:clamp(1.3rem,2.5vw,1.6rem);font-weight:700;color:#fff;margin-bottom:20px;line-height:1.35;" data-i18n="wake-heading">
+        The body doesn't panic at dawn.
+      </h3>
+
+      <div class="wakehr-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:24px;">
+        <div style="background:#111;border-radius:14px;padding:28px 24px;border:1px solid #1e1e1e;">
+          <div style="font-size:44px;font-weight:700;color:#3b82f6;line-height:1;">87<span style="font-size:20px;">%</span></div>
+          <div style="font-size:13px;color:#9ca3af;margin-top:6px;line-height:1.5;">924 mornings out of 1,061<br data-i18n="wake-stat-label">waking heart rate is <strong style="color:#e5e5e5;">lower</strong> than sleeping heart rate</div>
+        </div>
+        <div style="background:#111;border-radius:14px;padding:28px 24px;border:1px solid #1e1e1e;">
+          <div style="font-size:15px;font-weight:600;color:#e5e5e5;line-height:1.4;" data-i18n="wake-genetics">It's not genetics.<br>It's the schedule.</div>
+          <div style="font-size:13px;color:#9ca3af;margin-top:8px;line-height:1.6;">
+            21:00 bed. 5:00 wake.<br>
+            No alcohol. No midnight noise.<br>
+            <strong style="color:#e5e5e5;">10 years.</strong>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:linear-gradient(135deg,rgba(59,130,246,0.08) 0%,rgba(59,130,246,0.02) 100%);border-left:3px solid #3b82f6;border-radius:0 10px 10px 0;padding:24px 28px;">
+        <p style="font-size:13px;color:#9ca3af;line-height:1.75;margin:0;">
+          <strong style="color:#e5e5e5;">Why this matters:</strong> Most people's heart rate spikes the moment they open their eyes — their nervous system is already processing today's anxieties before their feet touch the floor. Jeff's doesn't. Not because he was born calm, but because he <strong style="color:#e5e5e5;">systematically eliminated the raw materials of morning stress</strong>: no sleep debt, no alcohol residue, no social anxiety, no time urgency. By 8:00 AM he's been awake 3–4 hours — body trained, mind clear, ready. The data looks like a physical gift. Strip away the numbers and what's left is a decade of 21:00 bedtimes.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 4 SLIDING CARDS ===== -->
+<section class="section-light">
+  <div class="section-inner" style="padding:80px 24px;">
+    <div class="section-label" data-i18n="cards-label">One Body. Four Dimensions.</div>
+    <h2 class="section-title" data-i18n="cards-title">A complete picture of your health</h2>
+    <p class="section-sub" data-i18n="cards-sub">From how you feel to how you recover — four lenses on the same truth: your body knows what it needs.</p>
+
+    <style>
+      .card-scroll { display:flex; gap:20px; overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; padding:20px 0 12px; scrollbar-width:none; }
+      .card-scroll::-webkit-scrollbar { display:none; }
+      .feature-card { flex:0 0 280px; scroll-snap-align:start; background:#f8f9fb; border-radius:16px; padding:32px 28px; border:1px solid #eef0f2; transition:transform 0.2s; }
+      .feature-card:hover { transform:translateY(-4px); }
+      .feature-card .icon { font-size:36px; margin-bottom:16px; display:block; }
+      .feature-card h4 { font-size:18px; font-weight:700; color:#0a0a0a; margin-bottom:8px; }
+      .feature-card p { font-size:14px; color:#6b7280; line-height:1.65; }
+    </style>
+
+    <div class="card-scroll">
+      <div class="feature-card">
+        <span class="icon">🧠</span>
+        <h4 data-i18n="card1-title">Quantify how your body feels</h4>
+         data-i18n="card1-desc"><p>ThresZone translates what your nervous system already knows into a number you can act on. Not guesswork — physiology.</p>
+      </div>
+      <div class="feature-card">
+        <span class="icon">🏔️</span>
+        <h4 data-i18n="card2-title">Extend your prime</h4>
+        <p data-i18n="card2-desc">Track your long-term trends — deep sleep ratio, resting heart rate, HRV — and watch the data prove you're not slowing down.</p>
+      </div>
+      <div class="feature-card">
+        <span class="icon">😴</span>
+        <h4 data-i18n="card3-title">Optimize your sleep</h4>
+        <p data-i18n="card3-desc">Sleep stages, efficiency, latency, consistency — understand what actually restores you, and what silently steals your recovery.</p>
+      </div>
+      <div class="feature-card">
+        <span class="icon">🏃</span>
+        <h4 data-i18n="card4-title">Measure every step and rep</h4>
+        <p data-i18n="card4-desc">Cardiovascular load, movement volume, daily strain — every walk, every set, every flight of stairs counts toward your ThresZone.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICES — WHITE BG · BLACK TEXT ===== -->
+<section class="section-dark" id="services">
+  <div class="section-inner services">
+    <div class="section-label" data-i18n="what-label">What We Do</div>
+    <h2 class="section-title" data-i18n="what-title">Health technology,<br>built for humans</h2>
+    <p class="section-sub" data-i18n="what-sub">AI-powered tools that analyze your body's signals — turning raw biometric data into daily decisions you can act on.</p>
+
+    <div class="services-grid">
+      <div class="service-card" id="service-rd">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+          <circle cx="24" cy="24" r="10" stroke="#3b82f6" stroke-width="1.5"/>
+          <circle cx="24" cy="24" r="4" stroke="#3b82f6" stroke-width="1.5"/>
+          <path d="M24 2v12M24 34v12M2 24h12M34 24h12" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="24" cy="10" r="1.5" fill="#3b82f6"/><circle cx="24" cy="38" r="1.5" fill="#3b82f6"/>
+          <circle cx="10" cy="24" r="1.5" fill="#3b82f6"/><circle cx="38" cy="24" r="1.5" fill="#3b82f6"/>
+        </svg>
+        <h3>R&D</h3>
+        <p data-i18n="service-rd-desc">Health wearable technology, algorithm development, and clinical validation.</p>
+      </div>
+      <div class="service-card" id="service-software">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+          <rect x="6" y="8" width="36" height="32" rx="3" stroke="#3b82f6" stroke-width="1.5"/>
+          <path d="M6 16h36" stroke="#3b82f6" stroke-width="1.5"/>
+          <path d="M16 3v8M32 3v8" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M14 24l4 4 8-8" stroke="#3b82f6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <h3>Software</h3>
+        <p data-i18n="service-sw-desc">AI-powered platforms: analytics, coaching, recovery tracking, and circadian optimization.</p>
+      </div>
+      <div class="service-card" id="service-consulting">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+          <path d="M24 4v20M24 32v2" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M12 32c0-6.6 5.4-12 12-12s12 5.4 12 12" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="24" cy="24" r="2" fill="#3b82f6"/>
+          <path d="M8 44h32" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M18 36h12" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <h3>Consulting</h3>
+        <p data-i18n="service-consulting-desc">Strategic advisory for health tech startups, corporate wellness, and workforce optimization.</p>
+      </div>
+      <div class="service-card">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+          <rect x="10" y="6" width="28" height="36" rx="4" stroke="#3b82f6" stroke-width="1.5"/>
+          <path d="M18 20l6-4-6-4v8z" fill="#3b82f6"/>
+          <path d="M26 20h4" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M18 28h10M18 32h10" stroke="#3b82f6" stroke-width="1" stroke-linecap="round" opacity="0.4"/>
+        </svg>
+        <h3 data-i18n="footer-training">Training</h3>
+        <p data-i18n="service-training-desc">Functional fitness coaching, midlife health transformation, freediving training.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== KYNISKIS — WHITE BG · DARK TEXT ===== -->
+<section class="section-light kyniskis" id="kyniskis">
+  <div class="section-inner kyniskis-grid">
+    <div class="kyniskis-visual">
+      <div class="logo-circle">
+        <img src="Kyniska.jpeg" alt="Kyniska — First Female Olympic Champion, 396 BC" style="border-radius:12px;">
+      </div>
+    </div>
+    <div class="kyniskis-text">
+      <h2 data-i18n="kyn-story-title">KYNISKIS STORY</h2>
+      <div class="origin" data-i18n="kyn-origin">The Story of Kyniska · 396 BC · First Female Olympic Champion</div>
+      <p data-i18n="kyn-story-p1">
+        In 396 BC, a Spartan princess named <strong>Kyniska</strong> did something no woman had ever done: she entered her horses in the Olympic chariot race — the <em>tethrippon</em>, a four-horse chariot — and won. Women weren't allowed to compete. They weren't even allowed to watch. But ownership of the horses was enough. Her victory challenged an empire's assumptions about what a woman could do.
+      </p>
+      <p data-i18n="kyn-story-p2">
+        <em>KYNISKIS</em> is named for her. Our device carries the same philosophy: the body you own is the only one you get. Learn its signals. Push its limits. Write your own record.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BUILT FOR 24/7 ===== -->
+<section class="section-light">
+  <div class="section-inner" style="padding:80px 24px;text-align:center;">
+    <div class="section-label" data-i18n="hw-label">Hardware</div>
+    <h2 class="section-title" data-i18n="hw-title">Designed for continuous wear</h2>
+    <p class="section-sub" data-i18n="hw-sub">No screen means no distractions. Just continuous sensing — day and night. Wear it, charge it every two weeks, forget it's there.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:32px;max-width:800px;margin:48px auto 0;">
+      <div style="text-align:center;">
+        <div style="font-size:36px;">🔋</div>
+        <div style="font-size:22px;font-weight:700;color:#0a0a0a;margin:12px 0 4px;">14 days</div>
+        <div style="font-size:12px;color:#6b7280;" data-i18n="hw-battery-label">Battery life</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:36px;">💧</div>
+        <div style="font-size:22px;font-weight:700;color:#0a0a0a;margin:12px 0 4px;">IP68</div>
+        <div style="font-size:12px;color:#6b7280;" data-i18n="hw-water-label">Water resistant</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:36px;">🪶</div>
+        <div style="font-size:22px;font-weight:700;color:#0a0a0a;margin:12px 0 4px;">Ultralight</div>
+        <div style="font-size:12px;color:#6b7280;" data-i18n="hw-weight-label">You forget you're wearing it</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:36px;">📡</div>
+        <div style="font-size:22px;font-weight:700;color:#0a0a0a;margin:12px 0 4px;">Zero screen</div>
+        <div style="font-size:12px;color:#6b7280;" data-i18n="hw-screen-label">Pure sensing, no pings</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TRAINING HERO — FULL BLEED PHOTO ===== -->
+<div class="training-hero">
+  <div class="training-hero-bg"></div>
+  <div class="training-hero-overlay">
+    <h2 data-i18n="jeff-hero">Meet Jeff</h2>
+  </div>
+</div>
+
+<!-- ===== TRAINING CONTENT — WHITE BG ===== -->
+<section class="section-light" id="training">
+  <div class="section-inner" style="padding: 80px 24px; text-align: center">
+    <div class="section-label" data-i18n="jeff-title">A Personal Case Study</div>
+    <div class="training-text" style="text-align:left;max-width:700px;margin:0 auto">
+
+      <p style="font-size:18px;color:#0a0a0a;font-weight:600;line-height:1.8;margin-bottom:24px;">
+        Twenty years in hotel HR management. Hilton. Marriott. Atlantis. Hyatt. The pressure isn't seasonal — it's structural. Back-to-back leadership meetings, cross-border projects, crisis decisions made before breakfast.
+      </p>
+
+      <p style="font-size:15px;color:#4b5563;line-height:1.85;margin-bottom:20px;">
+        In 2015, Jeff made a decision that quietly changed everything: <strong style="color:#0a0a0a;">track it</strong>. He put on a Garmin and started logging every training session. Not as a fitness enthusiast — as a professional whose body had to keep up with his calendar.
+      </p>
+
+      <p style="font-size:15px;color:#4b5563;line-height:1.85;margin-bottom:20px;">
+        By 2019, Nike Training Club gave way to CrossFit. By 2021, CrossFit became the core methodology. By 2023, he added sleep tracking — 1,062 nights and counting. <strong style="color:#0a0a0a;">The result: 4,099 training sessions across 10 years, every single one recorded, every trend visible.</strong>
+      </p>
+
+      <!-- Data proof -->
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:32px 0;">
+        <div style="background:#f8f9fb;border-radius:12px;padding:20px;text-align:center;">
+          <div style="font-size:24px;font-weight:700;color:#3b82f6;">51 bpm</div>
+          <div style="font-size:11px;color:#888;margin-top:4px;">Resting HR (90-day avg)</div>
+        </div>
+        <div style="background:#f8f9fb;border-radius:12px;padding:20px;text-align:center;">
+          <div style="font-size:24px;font-weight:700;color:#3b82f6;">87%</div>
+          <div style="font-size:11px;color:#888;margin-top:4px;">Mornings fully recovered</div>
+        </div>
+        <div style="background:#f8f9fb;border-radius:12px;padding:20px;text-align:center;">
+          <div style="font-size:24px;font-weight:700;color:#3b82f6;">16→20.6%</div>
+          <div style="font-size:11px;color:#888;margin-top:4px;">Deep sleep ratio (3yr)</div>
+        </div>
+      </div>
+
+      <p style="font-size:15px;color:#4b5563;line-height:1.85;margin-bottom:20px;">
+        The numbers don't lie. While most executives his age are on a downward slope of stress accumulation, Jeff's metrics have been trending <strong style="color:#0a0a0a;">up</strong>. Sleeping heart rate dropped from 54.3 to 51.9 bpm. Deep sleep ratio climbed from 16% to 20.6%. Nighttime blood oxygen minimum rose from 93.8% to 95.4%. <strong style="color:#0a0a0a;">He's getting older. His biomarkers are getting younger.</strong> These aren't marginal gains — they're the compound interest of a decade of disciplined tracking.
+      </p>
+
+      <p style="font-size:15px;color:#4b5563;line-height:1.85;margin-bottom:20px;">
+        <strong style="color:#0a0a0a;">The insight</strong>: it wasn't the training alone that made the difference. It was the <em>feedback loop</em>. Train → track → see the data → adjust → train again. This cycle — not any single workout, not any single device — is what kept the trajectory climbing year after year.
+      </p>
+
+      <p style="font-size:15px;color:#4b5563;line-height:1.85;margin-bottom:20px;">
+        And that physical foundation unlocked something bigger. With a body that could reliably deliver, confidence grew. Mental clarity sharpened. Emotional resilience deepened — the kind that comes from knowing you've done hard things before and can do them again. New doors opened: freediving to 17 meters on a single breath. Volunteering with the marine mammal rescue team — part of <strong style="color:#0a0a0a;">China's first successful short-finned pilot whale rescue in 2024</strong>. Late 2024, Taicang: an Alps-themed resort with a Ski Dome. Jeff had never skied — he walked in and signed up for instructor certification, passing three of four modules. Applying for Hong Kong's Quality Migrant Admission Scheme. These weren't items on a bucket list. They were the natural overflow of a body and mind working in sync.
+      </p>
+
+      <p style="font-size:16px;color:#0a0a0a;line-height:1.85;margin-bottom:8px;">
+        <strong>KYNISKIS was born from this exact experience.</strong> Not from a business plan. From the realization that most people never get to feel what it's like to have ten years of data on their side — and that a tool designed for exactly this purpose could change that.
+      </p>
+
+      <p style="font-size:15px;color:#3b82f6;line-height:1.85;margin-bottom:24px;text-align:center;">
+        Train. Build strength. Grow confident. Try something new. Break through. <strong>Repeat.</strong>
+      </p>
+
+      <div style="margin-top:36px;padding-top:32px;border-top:1px solid #e5e7eb;">
+        <p style="font-size:14px;color:#666;line-height:1.7;">
+          <strong>Jeff Qiao</strong> · Founder · Coach · Freediver<br>
+          CrossFit Level 1 Trainer · AIDA2 Freediver · CPR & First Aid (AHA) · NYIT MBA<br>
+          20 years international hotel HR · 10 years functional fitness · Coaching in Mandarin, English, Cantonese<br>
+          Hong Kong · Shenzhen · Remote
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT — BLACK BG ===== -->
+<section class="section-dark contact" id="contact">
+  <div class="section-label" data-i18n="contact-label">Get In Touch</div>
+  <h2 class="section-title" data-i18n="contact-title">Let's build something meaningful</h2>
+  <p class="section-sub" style="color:#9ca3af">Whether health tech partnership, coaching, or just curiosity — reach out.</p>
+  <a href="mailto:jeff.qiao@konnectlabai.com" class="contact-email">jeff.qiao@konnectlabai.com</a>
+  <p class="contact-address">Room 1901, Hip Shing Hong Centre, 55 Des Voeux Road Central, Hong Kong</p>
+</section>
+
+<!-- ===== JOIN THE WAITLIST — WHITE BG ===== -->
+<section class="section-light cta">
+  <h2 data-i18n="cta-title">Join In</h2>
+  <p data-i18n="cta-sub">Be part of the KYNISKIS community. Early access, training insights, and updates — straight to your inbox.</p>
+  <a href="join.html"  data-i18n="cta-btn" style="display:inline-block;margin-top:20px;padding:14px 36px;background:#3b82f6;color:#fff;border-radius:10px;text-decoration:none;font-size:14px;font-weight:600;">Join In</a>
+</section>
+
+<!-- ===== FOOTER — BLACK BG ===== -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col">
+       data-i18n="footer-company"><h4>Company</h4>
+      <a href="#kyniskis">KYNISKIS</a>
+      <a href="how-it-works.html" data-i18n="nav-how">How KYNISKIS Works</a>
+      <a href="#services" data-i18n="nav-services" data-i18n="footer-services-link">Services</a>
+      <a href="#training">Training</a>
+    </div>
+    <div class="footer-col">
+       data-i18n="footer-services"><h4>Services</h4>
+      <a  data-i18n="footer-rd" href="#service-rd">R&D</a>
+      <a  data-i18n="footer-sw" href="#service-software">Software</a>
+      <a  data-i18n="footer-consulting" href="#service-consulting">Consulting</a>
+    </div>
+    <div class="footer-col">
+       data-i18n="footer-contact"><h4>Contact</h4>
+      <a href="mailto:jeff.qiao@konnectlabai.com" data-i18n="footer-email">Email</a>
+    </div>
+    <div class="footer-col">
+       data-i18n="footer-legal"><h4>Legal</h4>
+      <a href="privacy.html" data-i18n="nav-privacy">Privacy Policy</a>
+      <a href="terms.html" data-i18n="footer-terms">Terms of Service</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="copy">&copy; 2026 Konnect International Limited. All rights reserved.</div>
+    <div style="font-size:12px;color:#4b5563" data-i18n="footer-location">Hong Kong · Shenzhen</div>
+  </div>
+</footer>
+
+
+<script>
+// Close side menu when clicking a link
+var sideLinks = document.querySelectorAll('.side-menu-links a');
+for (var i = 0; i < sideLinks.length; i++) {
+  sideLinks[i].addEventListener('click', function() {
+    document.getElementById('sideMenuCheckbox').checked = false;
+  });
+}
+
+// Dropdown toggle (for lang menu)
+function toggleDropdown(id) {
+  var d = document.getElementById(id);
+  d.classList.toggle('show');
+}
+
+// Close dropdowns when clicking outside
+window.onclick = function(e) {
+  if (!e.target.matches('.nav-dropbtn') && !e.target.matches('.hamburger') && !e.target.matches('.hamburger span')) {
+    document.querySelectorAll('.nav-dropdown-content').forEach(function(d) {
+      d.classList.remove('show');
+    });
+  }
+};
+
+// Language switcher
+// Translation data
+var i18n = {
+  en: {
+    'hero-tag': 'AI-Empowered Health Solutions',
+    'hero-title': 'Train. Sleep. <em>Recovery.</em>',
+    'hero-sub': 'For everyday readiness and lasting well-being.',
+    'hero-join': 'Join In',
+    'nav-services': 'Services',
+    'nav-kyniskis': 'About KYNISKIS',
+    'nav-training': 'Training &amp; Consulting',
+    'nav-contact': 'Contact Us',
+    'nav-join': 'Join In',
+    'nav-terms': 'Terms of Use',
+    'nav-privacy': 'Privacy Policy',
+    'nav-how': 'How KYNISKIS Works',
+    'nav-pages': 'Pages ▾',
+    'data-label': 'The Proof',
+    'data-title': 'Ten years of data-driven training.<br>The numbers don\'t lie.',
+    'data-sub': 'Before KYNISKIS was a product, it was a method: track everything, trust the data, adjust daily.<br>These are real numbers from a real person who has been doing exactly that since 2015.',
+    'cards-label': 'One Body. Four Dimensions.',
+    'cards-title': 'A complete picture of your health',
+    'cards-sub': 'From how you feel to how you recover — four lenses on the same truth: your body knows what it needs.',
+    'what-label': 'What We Do',
+    'what-title': 'Health technology,<br>built for humans',
+    'what-sub': 'AI-powered tools that analyze your body\'s signals — turning raw biometric data into daily decisions you can act on.',
+    'kyn-label': 'The Story',
+    'hw-label': 'Hardware',
+    'hw-title': 'Designed for continuous wear',
+    'hw-sub': 'No screen means no distractions. Just continuous sensing — day and night. Wear it, charge it every two weeks, forget it\'s there.',
+    'jeff-title': 'A Personal Case Study',
+    'contact-label': 'Get In Touch',
+    'contact-title': 'Let\'s build something meaningful',
+    'contact-sub': 'Whether health tech partnership, coaching, or just curiosity — reach out.',
+    'cta-title': 'Join In',
+    'cta-sub': 'Be part of the KYNISKIS community. Early access, training insights, and updates — straight to your inbox.',
+    'footer-copy': '© 2026 Konnect International Limited. All rights reserved.'
+  },
+  'zh-CN': {
+    'hero-tag': 'AI 驱动的健康解决方案',
+    'hero-title': '训练。睡眠。<em>恢复。</em>',
+    'hero-sub': '为你每一天的准备状态和持久的健康。',
+    'hero-join': '加入',
+    'nav-services': '服务',
+    'nav-kyniskis': '关于 KYNISKIS',
+    'nav-training': '训练与咨询',
+    'nav-contact': '联系我们',
+    'nav-join': '加入',
+    'nav-terms': '使用条款',
+    'nav-privacy': '隐私政策',
+    'nav-how': 'KYNISKIS 如何工作',
+    'nav-pages': '菜单 ▾',
+    'data-label': '数据的证明',
+    'data-title': '十年数据驱动的训练。<br>数字不会说谎。',
+    'data-sub': '在 KYNISKIS 成为产品之前，它是一种方法：记录一切，相信数据，每天调整。<br>这些是真实的数字，来自一个从 2015 年就开始这样做的人。',
+    'cards-label': '一个身体。四个维度。',
+    'cards-title': '全面了解你的健康',
+    'cards-sub': '从你的感受到你的恢复——同一个真相的四个视角：你的身体知道它需要什么。',
+    'what-label': '我们的服务',
+    'what-title': '健康科技，<br>为人而生',
+    'what-sub': 'AI 驱动的工具，分析你身体的信号——将原始生物数据转化为你可以执行的日常决策。',
+    'kyn-label': '品牌故事',
+    'hw-label': '硬件',
+    'hw-title': '为持续佩戴而设计',
+    'hw-sub': '没有屏幕意味着没有干扰。只有持续的感知——白天和黑夜。戴上它，每两周充一次电，忘记它的存在。',
+    'jeff-title': '一个个人案例',
+    'contact-label': '联系我们',
+    'contact-title': '一起创造有意义的事',
+    'contact-sub': '无论是健康科技合作、训练咨询，还是仅仅出于好奇——欢迎联系我们。',
+    'cta-title': '加入我们',
+    'cta-sub': '成为 KYNISKIS 社区的一员。抢先体验、训练洞察和产品更新——直接发送到你的邮箱。',
+    'contact-address': '香港德辅道中55号协成行中心1901室',
+    'contact-sub': '无论是健康科技合作、训练咨询，还是仅仅出于好奇——欢迎联系我们。',
+    'footer-copy': '© 2026 Konnect International Limited。保留所有权利。',
+
+    'nav-about': '关于 Konnect International',
+    'nav-join-kyniskis': '加入 KYNISKIS',
+    'nav-signup': '注册',
+    'data-sub': '在 KYNISKIS 成为产品之前，它是一种方法：记录一切，相信数据，每天调整。<br>这些是真实的数字，来自一个从 2015 年就开始这样做的人。',
+    'data-timeline-garmin': '2015 · Garmin',
+    'data-timeline-cf': '2019 · CrossFit',
+    'data-timeline-fullcf': '2021 · Full CrossFit',
+    'data-timeline-autosleep': '2023 · AutoSleep',
+    'data-metric-sessions': '训练次数<br>自 2015 年起',
+    'data-metric-sleep': '睡眠夜晚<br>持续追踪',
+    'data-metric-hr': '平均静息<br>心率（90天）',
+    'data-metric-recovery': '早晨醒来<br>完全恢复',
+    'data-trend-deepsleep': '深睡比例 · 3年趋势',
+    'data-trend-sleephr': '睡眠心率（bpm）· 3年趋势',
+    'data-trend-spo2': '最低血氧 · 3年趋势',
+    'data-methodology': '这是方法论的结果——不是设备的功劳。KYNISKIS 的使命，是让这种方法可以被任何想用数据而非猜测来训练的人使用。',
+    'wake-title': '晨醒心率异常',
+    'wake-heading': '身体不会在黎明时恐慌。',
+    'wake-stat-label': '醒来心率<strong style="color:#e5e5e5;">低于</strong>睡眠心率',
+    'wake-genetics': '不是基因。<br>是作息。',
+    'cards-title': '全面了解你的健康',
+    'cards-sub': '从你的感受到你的恢复——同一个真相的四个视角：你的身体知道它需要什么。',
+    'card1-title': '量化你的身体感受',
+    'card1-desc': 'ThresZone 将你的神经系统已经知道的信息，转化为你可以执行的数字。不是猜测——是生理学。',
+    'card2-title': '延长你的巅峰期',
+    'card2-desc': '追踪你的长期趋势——深睡比例、静息心率、HRV——然后看着数据证明你没有在走下坡路。',
+    'card3-title': '优化你的睡眠',
+    'card3-desc': '睡眠阶段、效率、入眠时间、一致性——了解什么真正让你恢复，什么在悄悄偷走你的恢复。',
+    'card4-title': '衡量每一步和每一次训练',
+    'card4-desc': '心血管负荷、运动量、每日压力——每一次散步、每一组训练、每一层楼梯都计入你的 ThresZone。',
+    'what-title': '健康科技，<br>为人而生',
+    'what-sub': 'AI 驱动的工具，分析你身体的信号——将原始生物数据转化为你可以执行的日常决策。',
+    'service-rd-desc': '健康穿戴科技、算法开发和临床验证。',
+    'service-sw-desc': 'AI 驱动的平台：数据分析、教练指导、恢复追踪和昼夜节律优化。',
+    'service-consulting-desc': '为健康科技初创公司、企业健康和劳动力优化提供战略咨询。',
+    'service-training-desc': '功能性健身教练、中年健康转型、自由潜水训练。',
+    'kyn-story-title': 'KYNISKIS 的故事',
+    'kyn-origin': 'Kyniska 的故事 · 公元前396年 · 第一位女性奥运冠军',
+    'kyn-story-p1': '公元前396年，一位名叫 <strong>Kyniska</strong> 的斯巴达公主做到了前所未有的壮举：她让自己的马匹参加了奥运会战车赛——<em>tethrippon</em>，四马战车——并赢得了冠军。女性不被允许参赛。甚至不被允许观赛。但马匹的所有权足够了。她的胜利挑战了一个帝国对女性能力的假设。',
+    'kyn-story-p2': '<em>KYNISKIS</em> 以她命名。我们的设备承载着同样的哲学：你拥有的这具身体，是你唯一的一具。学习它的信号。突破它的极限。书写你自己的记录。',
+    'hw-sub': '没有屏幕意味着没有干扰。只有持续的感知——白天和黑夜。戴上它，每两周充一次电，忘记它的存在。',
+    'hw-battery-label': '电池续航',
+    'hw-water-label': '防水等级',
+    'hw-weight-label': '轻到忘记',
+    'hw-screen-label': '纯粹感知，零打扰',
+    'jeff-hero': '认识 Jeff',
+    'cta-sub': '成为 KYNISKIS 社区的一员。抢先体验、训练洞察和产品更新——直接发送到你的邮箱。',
+    'cta-btn': '加入',
+    'footer-company': '公司',
+    'footer-services': '服务',
+    'footer-contact': '联系我们',
+    'footer-legal': '法律',
+    'footer-kyniskis': 'KYNISKIS',
+    'footer-services-link': '服务',
+    'footer-training': '训练',
+    'footer-rd': '研发',
+    'footer-sw': '软件',
+    'footer-consulting': '咨询',
+    'footer-email': '邮件',
+    'footer-terms': '服务条款',
+    'footer-location': '香港 · 深圳',
+    'footer-copy': '© 2026 Konnect International Limited。保留所有权利。',
+    'kyn-label': '品牌故事',
+    'cards-label': '一个身体。四个维度。',
+  },
+  'zh-TW': {
+    'hero-tag': 'AI 驅動的健康解決方案',
+    'hero-title': '訓練。睡眠。<em>恢復。</em>',
+    'hero-sub': '為你每一天的準備狀態和持久的健康。',
+    'hero-join': '加入',
+    'kyn-label': '品牌故事',
+    'what-label': '我們的服務'
+  }
+};
+
+function setLang(lang) {
+  // Fallback: zh-TW uses zh-CN for missing keys
+  var t = i18n[lang] || i18n['en'];
+  var fallback = (lang === 'zh-TW') ? i18n['zh-CN'] : null;
+
+  // Update all elements with data-i18n
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    var key = el.getAttribute('data-i18n');
+    var val = t[key] || (fallback && fallback[key]) || el.getAttribute('data-i18n-default') || '';
+    if (val) el.innerHTML = val;
+  });
+
+  // Update nav dropdown button
+  var langLabel = lang === 'en' ? 'EN' : lang === 'zh-CN' ? '简' : '繁';
+  document.querySelectorAll('.nav-dropbtn').forEach(function(b) {
+    if (b.textContent.includes('EN') || b.textContent.includes('简') || b.textContent.includes('繁')) {
+      b.innerHTML = langLabel + ' ▾';
+    }
+  });
+
+  // Update active state in lang menu
+  document.querySelectorAll('#langMenu a').forEach(function(a) {
+    a.classList.remove('active');
+  });
+  localStorage.setItem('kyniskis-lang', lang);
+}
+
+// Init language from localStorage
+(function() {
+  var saved = localStorage.getItem('kyniskis-lang');
+  if (saved && i18n[saved]) setLang(saved);
+})();
+
+// Chat popup
+
+// Hero video auto-detect
+
+  // Translation handled by direct links above
+
+  document.addEventListener('DOMContentLoaded', function() {
+  var v = document.querySelector('.hero-video');
+  if (v) {
+    v.addEventListener('loadeddata', function() { v.classList.add('active'); });
+  }
+  // Photo strip: show images if they load
+  document.querySelectorAll('.photo-strip img').forEach(function(img) {
+    img.addEventListener('load', function() { this.style.display = 'block'; });
+    // If cached and already loaded
+    if (img.complete && img.naturalWidth > 0) img.style.display = 'block';
+  });
+});
+</script>
+
+<!-- ===== CHAT WIDGET ===== -->
+
+<div class="chat-popup" id="chatPopup">
+  <button class="popup-close" onclick="dismissPopup()">✕</button>
+  <div class="popup-avatar"><img src="https://konnectlabai.com/Logo.png" alt="K"></div>
+  <div class="popup-text">Curious about training or KYNISKIS?<br><strong>Chat with Kynis now.</strong></div>
+</div>
+
+<div class="chat-bubble" id="chatBubble" onclick="toggleChat()" title="Chat with Kynis">
+  <img src="https://konnectlabai.com/Logo.png" alt="Chat with Kynis" onerror="this.style.display='none';this.parentElement.innerHTML='💬';">
+</div>
+
+<div class="chat-window" id="chatWindow">
+  <div class="chat-header">
+    <div><h4>Kynis</h4><span>Ask me anything</span></div>
+    <button class="chat-close" onclick="toggleChat()">✕</button>
+  </div>
+  <div class="chat-disclaimer" id="chatDisclaimer">
+    <p>This AI provides health information and general guidance — not medical advice, diagnosis, or treatment.<br><br>By continuing, you agree to our <a href="./terms.html" target="_blank">Terms of Use</a> and <a href="./privacy.html" target="_blank">Privacy Policy</a>.</p>
+    <div class="disclaimer-btns">
+      <button class="btn-continue" onclick="acceptDisclaimer()">Continue</button>
+      <button class="btn-close" onclick="closeDisclaimer()">Close</button>
+    </div>
+  </div>
+  <div class="chat-powered"><div class="ds-badge">Powered by <strong>DeepSeek V4</strong></div></div>
+  <div class="chat-body" id="chatBody">
+    <div class="chat-msg bot">Hi! I'm Kynis. Ask me about KYNISKIS, Jeff's training, or our services.</div>
+  </div>
+  <div class="chat-typing" id="chatTyping">Typing...</div>
+  <div class="chat-input-area">
+    <textarea id="chatInput" placeholder="Type a message… (Shift+Enter ↵ new line)" rows="1" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendMessage()}" oninput="this.style.height='';this.style.height=Math.min(this.scrollHeight,120)+'px'"></textarea>
+    <button onclick="sendMessage()">Send</button>
+  </div>
+</div>
+
+<script>
+
+// Show popup once per day (cookie-based)
+function getCookie(n){var m=document.cookie.match('(^|;)\\s*'+n+'\\s*=\\s*([^;]+)');return m?m.pop():''}
+function setCookie(n,v,d){var e=new Date;e.setTime(e.getTime()+d*86400000);document.cookie=n+'='+v+';expires='+e.toUTCString()+';path=/'}
+setTimeout(function(){
+  if(!getCookie('chatPopupShown')){
+    document.getElementById('chatPopup').classList.add('show');
+    setCookie('chatPopupShown','1',1);
+    setTimeout(function(){
+      var p=document.getElementById('chatPopup');
+      if(p)p.classList.remove('show');
+    },8000);
+  }
+},2000);
+
+function dismissPopup() {
+  document.getElementById('chatPopup').classList.remove('show');
+}
+
+var chatOpen = false;
+function toggleChat() {
+  chatOpen = !chatOpen;
+  var win = document.getElementById('chatWindow');
+  win.classList.toggle('open', chatOpen);
+  document.getElementById('chatBubble').style.display = chatOpen ? 'none' : 'flex';
+  if (chatOpen) {
+    if (!getCookie('chatDisclaimerAccepted')) {
+      document.getElementById('chatDisclaimer').classList.add('show');
+    }
+    document.getElementById('chatInput').focus();
+  }
+}
+
+function acceptDisclaimer() {
+  setCookie('chatDisclaimerAccepted', '1', 365);
+  document.getElementById('chatDisclaimer').classList.remove('show');
+  document.getElementById('chatInput').focus();
+}
+
+function closeDisclaimer() {
+  document.getElementById('chatDisclaimer').classList.remove('show');
+  toggleChat();
+}
+
+var CHAT_URL = "https://api.konnectlabai.com/chat";
+// STAGING: var CHAT_URL = "https://reason-avoiding-ala-statement.trycloudflare.com/api/chat";
+var SESSION_ID = 's' + Date.now() + '-' + Math.random().toString(36).substr(2,6);
+
+// Auth: check for logged-in user
+var kynisToken = localStorage.getItem('kynis_token');
+var kynisUser = null;
+try { kynisUser = JSON.parse(localStorage.getItem('kynis_user')); } catch(e) {}
+
+// Update nav based on login state
+(function() {
+  if (!kynisToken || !kynisUser) return;
+  var loginLink = document.getElementById('navLoginLink');
+  if (!loginLink) return;
+  
+  // Hide Join In
+  var joinBtn = document.getElementById('navJoinBtn');
+  if (joinBtn) joinBtn.style.display = 'none';
+  var heroJoin = document.getElementById('heroJoinBtn');
+  if (heroJoin) heroJoin.style.display = 'none';
+  // Replace Sign In with user menu
+  loginLink.href = '#';
+  loginLink.textContent = '👤 ' + (kynisUser.name || 'User');
+  loginLink.style.color = '#22c55e';
+  loginLink.style.borderColor = '#22c55e';
+  loginLink.onclick = function(e) {
+    e.preventDefault();
+    if (confirm('Sign out, ' + (kynisUser.name || 'User') + '?')) {
+      localStorage.removeItem('kynis_token');
+      localStorage.removeItem('kynis_user');
+      location.href = 'index.html';
+    }
+  };
+})();
+
+// Run again after DOM ready as fallback (browser cache may delay element availability)
+document.addEventListener('DOMContentLoaded', function() {
+  if (!kynisToken || !kynisUser) return;
+  var jb = document.getElementById('navJoinBtn');
+  var hj = document.getElementById('heroJoinBtn');
+  if (jb) jb.style.display = 'none';
+  if (hj) hj.style.display = 'none';
+});
+
+function chatReply(msg) {
+  var headers = {'Content-Type': 'application/json'};
+  if (kynisToken) headers['Authorization'] = 'Bearer ' + kynisToken;
+  
+  // Include user profile so Kynis knows who they are
+  var body = {message: msg, session_id: SESSION_ID};
+  if (kynisUser) body.user = kynisUser;
+  
+  // 15s timeout — prevents infinite "typing" on cold start / API hang
+  var controller = new AbortController();
+  var timer = setTimeout(function(){ controller.abort(); }, 15000);
+  
+  fetch(CHAT_URL, {
+    method: 'POST', headers: headers,
+    body: JSON.stringify(body),
+    signal: controller.signal
+  }).then(function(r){ return r.json() }).then(function(d){
+    clearTimeout(timer);
+    var body = document.getElementById('chatBody');
+    body.innerHTML += '<div class="chat-msg bot">' + escapeHtml(d.reply) + '</div>';
+    document.getElementById('chatTyping').style.display = 'none';
+    body.scrollTop = body.scrollHeight;
+  }).catch(function(e){
+    clearTimeout(timer);
+    // Timeout or network error — fallback to local keyword matching
+    var body = document.getElementById('chatBody');
+    var localReply = (chatReplyLocal(msg) || '').replace(/\n/g, '<br>');
+    body.innerHTML += '<div class="chat-msg bot">' + localReply + '</div>';
+    document.getElementById('chatTyping').style.display = 'none';
+    body.scrollTop = body.scrollHeight;
+  });
+  return ''; // prevent duplicate — async handles the response
+}
+
+function chatReplyLocal(msg) {
+
+  var m = msg.toLowerCase();
+  // Greetings in English + Chinese
+  if (/^(hi|hello|hey|yo|sup|hej|hola)\b/.test(m) || /^(你好|嗨|哈喽|嘿|早|哈啰)/.test(msg))
+    return "Hey! 👋 I\'m Kynis — named after the Spartan princess Kyniska, history\'s first female Olympic champion. Ask me anything about training, recovery, KYNISKIS, or working with Jeff.";
+  if (/^(谢谢|thanks|thank|thx|多谢|唔该)/.test(m))
+    return "You\'re welcome! Anything else you\'d like to know? I\'m here for training tips, product questions, or just to chat about health stuff.";
+  // About Kynis/KYNISKIS
+  if (/kynis|kyniskis|product|wearable|trademark|品牌|产品/.test(m))
+    return "KYNISKIS is our wearable health platform — still in development, but built around one idea: your body\'s data should actually mean something to you. Named after the first female Olympic champion. The logo? A horse head in a circle — strength meeting simplicity. Want the full story or just curious about what it tracks?";
+  // Training
+  if (/training|coach|fitness|workout|exercise|train|gym|strength|mobility|训练|健身|运动/.test(m))
+    return "Jeff\'s been training people for over a decade — functional fitness, strength work, mobility, and freediving. He\'s CrossFit Level 1 and AIDA2 certified. Based in Hong Kong and Shenzhen, does in-person and remote. Real talk: he\'s not the shouty gym type. More like 'let\'s figure out what your body actually needs.' Want me to connect you?";
+  // Jeff
+  if (/jeff|founder|乔|迁乔|background|about you|你是谁|who are you|certif|mba/.test(m))
+    return "Jeff Qiao — 20 years in hotel HR (Hilton, Marriott, Atlantis, Hard Rock, Hyatt), then took the leap to build Konnect International. NYIT MBA, CrossFit L1 trainer, freediver, and genuinely obsessed with the intersection of AI and human health. He coaches in Mandarin, English, and Cantonese. Want his full story or just the training part?";
+  // Contact
+  if (/contact|email|address|location|office|phone|reach|联系|地址|电话/.test(m))
+    return "Easiest way: jeff.qiao@konnectlabai.com 📧. Our office is at Hip Shing Hong Centre, 55 Des Voeux Road Central, Hong Kong. Or just keep talking to me — I\'ll make sure Jeff sees this.";
+  // Services
+  if (/service|offer|what do you|consult|rd|software|服务/.test(m))
+    return "Four things we do: 🔬 R&D (health wearables and algorithms), 💻 Software (AI-powered health platforms), 🎓 Consulting (health tech strategy), and 🏋️ Training (with Jeff). Which one caught your eye?";
+  // Health/recovery
+  if (/health|recover|sleep|stress|hrv|wellness|健康|恢复|睡眠/.test(m))
+    return "Health isn\'t just about working out — it\'s recovery, sleep, stress management, the whole picture. That\'s actually why we\'re building KYNISKIS. Jeff\'s training philosophy is the same: train smart, recover smarter. Curious about a specific area?";
+  // Default — conversational, not robotic
+  if (/[一-鿿]/.test(msg))
+    return "嘿，我是 Kynis。Jeff 搭建了我来帮大家了解训练、健康恢复、还有我们的产品 KYNISKIS。你有什么想知道的？随便聊 😊";
+  return "I\'m Kynis — Jeff built me to talk about training, recovery, KYNISKIS, and all things health. Not sure what you\'re after? Just ask. I\'m pretty good at figuring it out 😊";
+}
+
+function sendMessage() {
+  var input = document.getElementById('chatInput');
+  var msg = input.value.trim();
+  if (!msg) return;
+  var body = document.getElementById('chatBody');
+  body.innerHTML += '<div class="chat-msg user">' + escapeHtml(msg) + '</div>';
+  input.value = '';
+  body.scrollTop = body.scrollHeight;
+  document.getElementById('chatTyping').style.display = 'block';
+  chatReply(msg);
+}
+
+function escapeHtmlExceptBr(text) {
+  // Escape HTML but preserve <br> tags
+  return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/&lt;br&gt;/g, '<br>');
+}
+function escapeHtml(text) {
+  var d = document.createElement('div');
+  d.textContent = text;
+  return d.innerHTML;
+}
+</script>
+
+</body>
+</html>
