@@ -385,8 +385,9 @@
       0 0 32px 12px rgba(255,255,255,0.02);
   }
   .chat-bubble:hover { transform: scale(1.08); }
-  .chat-bubble img {
+  .chat-bubble svg {
     width: 48px; height: 48px;
+    filter: drop-shadow(0 0 6px rgba(59,130,246,0.3));
   }
   .chat-window {
     position: relative;
@@ -1183,7 +1184,11 @@ function setLang(lang) {
 </div>
 
 <div class="chat-bubble" id="chatBubble" onclick="toggleChat()" title="Chat with Kynis">
-  <img src="https://konnectlabai.com/Logo.png" alt="Chat with Kynis" onerror="this.style.display='none';this.parentElement.innerHTML='💬';">
+  <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="24" cy="24" r="24" fill="#0a0a0a"/>
+    <circle cx="24" cy="24" r="23" stroke="#3b82f6" stroke-width="2"/>
+    <text x="24" y="32" text-anchor="middle" font-size="26" font-weight="700" fill="#3b82f6" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">K</text>
+  </svg>
 </div>
 
 <div class="chat-window" id="chatWindow">
