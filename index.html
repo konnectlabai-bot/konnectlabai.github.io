@@ -184,7 +184,7 @@
     width: 140px; height: 140px; margin: 0 auto 32px;
     display: flex; align-items: center; justify-content: center;
   }
-  .hero-logo img { width: 140px; height: 140px; }
+  .hero-logo img { width: 140px; height: 140px; object-fit: contain; }
   .hero-tag {
     font-size: 11px; text-transform: uppercase; letter-spacing: 4px;
     color: #3b82f6; margin-bottom: 20px;
@@ -271,7 +271,7 @@
     width: 240px; height: 240px; margin: 0 auto;
     display: flex; align-items: center; justify-content: center;
   }
-  .kyniskis-visual .logo-circle img { width: 480px; height: auto; }
+  .kyniskis-visual .logo-circle img { width: 100%; height: auto; border-radius: 12px; }
   .kyniskis-text h2 { font-size: 40px; font-weight: 700; line-height: 1.1; color: #0a0a0a; }
   .kyniskis-text .origin {
     font-size: 13px; color: #3b82f6; text-transform: uppercase; letter-spacing: 2px;
@@ -386,8 +386,8 @@
       0 0 32px 12px rgba(255,255,255,0.02);
   }
   .chat-bubble:hover { transform: scale(1.08); }
-  .chat-bubble svg {
-    width: 48px; height: 48px;
+  .chat-bubble img {
+    width: 48px; height: 48px; border-radius: 50%;
     filter: drop-shadow(0 0 6px rgba(59,130,246,0.3));
   }
   .chat-window {
